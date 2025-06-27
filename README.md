@@ -73,40 +73,6 @@ To add this MCP server to Cursor:
 
 This is required because the configuration is read when the server starts, and Cursor needs to restart the MCP server to pick up the new configuration.
 
-
-## Usage
-
-### Development
-
-Run TypeScript compiler in watch mode:
-
-```bash
-npm run dev
-```
-
-### Production
-
-Build and run the server:
-
-```bash
-npm run build
-npm start
-```
-
-### Testing
-
-Run tests:
-
-```bash
-npm test
-```
-
-Run tests in watch mode:
-
-```bash
-npm run test-dev
-```
-
 ## MCP Tool Usage
 
 The server provides two tools:
@@ -122,26 +88,6 @@ Load global rules ("g-*.mdc") to target project.
 - `success` (boolean): Whether operation succeeded
 - `errors` (array, optional): Array of error objects if operation failed
 
-**Example Success Response**:
-```json
-{
-  "success": true
-}
-```
-
-**Example Error Response**:
-```json
-{
-  "success": false,
-  "errors": [
-    {
-      "type": "CONFIG_PARSING_ERROR",
-      "message": "Configuration file config.json not found"
-    }
-  ]
-}
-```
-
 ### `saveGlobalRules`
 
 Save global rules ("g-*.mdc") from target project to global storage.
@@ -150,25 +96,6 @@ Save global rules ("g-*.mdc") from target project to global storage.
 - `path` (string): Absolute path to source project directory that contains .cursor/rules
 
 **Output**: Same format as `loadGlobalRules`
-
-## Error Types
-
-The server uses standardized error types:
-
-- `CONFIG_PARSING_ERROR`: Issues with config.json (not found, invalid JSON, missing fields, invalid paths)
-- `OPERATION_ERROR`: File system operations errors (copying, reading, writing)
-
-## Configuration
-
-The server requires a `config.json` file in the root directory with the following structure:
-
-```json
-{
-  "globalRulesSourceDir": "/absolute/path/to/your/global/rules/directory"
-}
-```
-
-This directory should contain your global rule files (files starting with "g-").
 
 ## License
 
