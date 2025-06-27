@@ -34,6 +34,11 @@ architecture:
       main: "index.ts for server entry point"
       configExample: "config.example.json as empty template for optional configuration"
       tests: "*.test.ts files for testing"
+      
+    gitIgnore:
+      cursorRules: "Always add !.cursor to .gitignore to include Cursor rules in repository"
+      purpose: "Ensure Cursor-specific configuration and rules are tracked in version control"
+      pattern: "Use !.cursor negation pattern to override default .cursor ignore"
 
   coreComponents:
     serverClass:
