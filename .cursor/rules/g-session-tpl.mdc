@@ -1,0 +1,493 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+```yaml
+$meta:
+  name: 'sessionLamlTemplate'
+  goal: 'standardizedLamlSessionFileTemplate'
+  version: 2.0
+  purpose: "Comprehensive LAML template specification for development session files with complete structure, format rules, lifecycle management, and content generation guidelines"
+  domains: ['development.session.templates', 'template.generation.specification']
+  spec: '.cursor/rules/laml2.mdc'
+
+# === BASE SPECIFICATIONS ===
+baseSpecifications:
+  lamlPrinciples:
+    path: '.cursor/rules/laml2.mdc'
+    section: 'principles'
+  lamlScenarios:
+    path: '.cursor/rules/laml2.mdc'
+    section: 'scenarios'
+  note: "This template extends and applies LAML2 principles for session management"
+  applicability: "All LAML design philosophy and scenarios apply to session template operations"
+
+# === STANDARD WORKFLOW ===
+standardWorkflow:
+  analyze: "Assess current LAML document state and identify requirements"
+  validate: "Check LAML compliance and structure including mandatory definitions"
+  design: "Plan optimal LAML structure with appropriate domain organization"
+  implement: "Execute LAML changes while maintaining specification integrity"
+  verify: "Confirm LAML compliance and document coherence across all domains"
+
+# === SESSION FILE STRUCTURE ===
+sessionFileStructure:
+  purpose: "Complete specification for LAML-compliant session file structure, format, and organization"
+  
+  fileFormat:
+    type: 'laml'
+    extension: '.yaml'
+    encoding: 'utf-8'
+    
+  mandatorySections:
+    sessionMeta:  
+      position: 1
+      mandatory: true
+      purpose: 'Session identity and metadata'
+      format: "Meta section with session specific fields"
+      requiredFields:
+        taskName: 'humanReadableTaskDescription'
+        goal: 'primaryObjectiveAndBusinessValue'
+      
+    taskOverview:
+      position: 2
+      mandatory: true
+      purpose: 'Problem definition and scope boundaries'
+      requiredSections:
+        goal: 'primaryObjectiveAndBusinessValue'
+        affectedUsers: 'userGroupsImpactedByImplementation'
+        currentLimitations: "Existing system constraints and pain points"
+        rootCause: "Fundamental reason why problem exists"
+        successCriteria: 'measurableOutcomesDefiningCompletion'
+        scopeBoundaries: "What is and is not included in this session"
+      updateBehavior: "Updated with problem analysis requirements and success criteria"
+      
+    userScenarios:
+      position: 3
+      mandatory: true
+      purpose: 'Comprehensive scenario definitions with verification requirements'
+      requiredCategories: ['successfulScenarios', 'failureScenarios', 'edgeCases']
+      updateBehavior: "Created with comprehensive scenarios and verification checkboxes"
+
+    technicalContext:
+      position: 4
+      mandatory: true
+      purpose: 'Technical context and system understanding'
+      updateBehavior: "Continuously updated with technical discoveries and user decisions"
+      organizationPrinciples:
+        centralizedStructure: "All technical information must be organized in the single main technicalContext section"
+        domainBasedStructure: "Organize information into domains and subdomains with unlimited nesting levels based on functional or technical boundaries"
+        hierarchicalSubdivision: "Create subdomains at any level of depth where subdivision provides organizational value"
+        referenceStrategy: "Steps reference specific technicalContext domains/subdomains at any nesting level for consistency"
+      structure:
+        domains: "Top-level technical domains (e.g., architecture, dependencies, integration, patterns)"
+        subdomains: "Nested subdomains within domains at any level of depth (e.g., architecture.frontend.components.forms.validation, dependencies.external.apis.authentication.oauth2)"
+        crossReferences: "Use references to connect related information across domains and subdomains at any nesting level"
+      requiredDomains:
+        codebaseAnalysis: "Current architecture, patterns, relevant files, dependencies"
+        designSystemAnalysis: "Available UI components, styling patterns, UX conventions"
+        uxAnalysis: "User flows, interaction patterns, potential conflicts"
+        integrationContext: "Integration points, existing patterns, architectural decisions"
+        userDecisions: "Preferences, constraints, and validated assumptions"
+        riskAssessment: "Identified risks, mitigation strategies, complexity factors"
+        
+    implementationPlan:
+      position: 5
+      mandatory: true
+      purpose: 'Structured implementation strategy with progress tracking'
+      updateBehavior: "Built progressively with stages steps and verification tracking"
+      requiredStructure:
+        stageDefinition: "Implementation broken into logical stages"
+        stepDefinition: "Each stage broken into independent, testable steps"
+        progressTracking: "Verification checkboxes for all stages and steps"
+
+  sessionMetaSpecification:
+    taskName: 
+      format: "Human-readable task description"
+      maxLength: 100
+      example: "Implement user profile avatar upload functionality"
+    goal: 
+      format: "Primary objective and business value statement"
+      maxLength: 200
+      example: "Enable users to upload and manage profile avatars for better personalization"
+    
+  progressTracking:
+    checkboxFormat: 
+      incomplete: '[ ]'
+      complete: '[x]'
+      inProgress: '[~]'
+    verificationRequirement: 'userConfirmationRequired'
+    updateFrequency: 'afterEachStepCompletion'
+    trackingLevels: ['stage', 'step', 'scenario', 'verification']
+
+# === SESSION LIFECYCLE MANAGEMENT ===
+sessionLifecycleManagement:
+  purpose: 'Complete lifecycle management for session files from creation to archival'
+  
+  updateTriggers:
+    stepCompletion: "After each step completion and user verification"
+    discoveryMade: "When new technical or business information is discovered"
+    decisionMade: "When user makes preferences constraints or approach decisions"
+    verificationCompleted: "When user confirms step functionality through testing"
+    errorEncountered: "When implementation issues or blocks are discovered"
+    requirementChange: "When requirements are clarified or modified"
+
+  updateProcedures:
+    lamlPrinciplesCompliance: "CRITICAL: Follow all LAML principles during session updates"
+    informationActualization: "Replace outdated information directly in its original location - never add supplementary clarifications or update notes"
+    currentStateReflection: "Ensure all content reflects current understanding without historical artifacts or progressive additions"
+    wholeDocumentValidation: "Verify entire document accuracy and consistency with every update operation"
+    stepCompletionUpdates: "Update session file sections directly with current discoveries"
+    progressTracking: "Mark verification checkboxes complete after user confirmation"
+    contextIntegration: "Merge technical findings and decisions into relevant sections by replacing existing content"
+    decisionDocumentation: "Record user decisions preferences constraints by updating existing information in place"
+    noSeparateLogging: "Never add logs, notes, or supplementary sections - update existing content directly"
+    antiPatternAvoidance: "Avoid adding sections like 'Критическое уточнение:', 'Результаты анализа:', 'Обновление требований:' or similar progressive additions"
+    scopeBoundariesManagement: "CRITICAL: Manage scope boundaries during session updates according to scope rules"
+    
+  informationIntegrity:
+    consistencyMaintenance: "Ensure all sections remain synchronized with current understanding"
+    decisionTraceability: "Maintain clear linkage between decisions and their implementation"
+    progressVisibility: "Provide clear indication of completion status across all sections"
+    contextPreservation: "Maintain sufficient detail for effective session resumption"
+    currentStateIntegrity: "All information must reflect the current state of understanding and decisions without reference to previous versions"
+    documentCohesion: "Maintain document coherence through direct information updates rather than incremental additions"
+    scopeBoundariesIntegrity:
+      sessionWorkRule: "CRITICAL: During session work, consider and implement ONLY elements from inScope section"
+      updateRule: "CRITICAL: During session updates, any new requirements not in inScope and not in outOfScope MUST be moved to onReview section"
+      scopeEnforcement: "Never implement elements from outOfScope or onReview sections without explicit user decision"
+      automaticCategorization: "Automatically categorize discovered requirements into appropriate scope sections during updates"
+      scopeValidation: "Validate that all implementation activities align with current inScope elements only"
+
+# === CONTENT TEMPLATES ===
+contentTemplates:
+  purpose: "Comprehensive content templates for each required session section with detailed formatting guidelines"
+  
+  taskOverview:
+    structure:
+      problemStatement: 
+        purpose: "Clear description of problem being solved"
+        format: "2-3 sentences describing the core issue"
+        example: "Users currently cannot upload profile avatars, limiting personalization options. This reduces user engagement and profile completeness."
+      affectedUsers: 
+        purpose: "User groups impacted by this problem"
+        format: "List of specific user categories with impact description"
+        example: "All registered users seeking profile personalization, administrators managing user profiles"
+      currentLimitations: 
+        purpose: "Existing system constraints and pain points"
+        format: "Bulleted list of specific limitations"
+        example: "No file upload capability, static default avatars only, no image processing pipeline"
+      rootCause: 
+        purpose: "Fundamental reason why problem exists"
+        format: "Single sentence identifying core cause"
+        example: "Avatar functionality was not included in initial user management implementation"
+      successCriteria: 
+        purpose: "Measurable outcomes defining successful completion"
+        format: "Numbered list of specific, testable criteria"
+        example: "Users can upload images up to 5MB, images are automatically resized and optimized, upload errors are handled gracefully"
+      scopeBoundaries: 
+        purpose: "Define clear boundaries of what is and is not included in this session"
+        format: "Three mandatory subsections with bulleted items"
+        mandatory: true
+        requiredStructure:
+          inScope: "Elements that are definitively included in the session scope"
+          outOfScope: "Elements that are definitively excluded from the session scope"
+          onReview: "Elements that require user decision whether to include or exclude from scope"
+        criticalRule: "NOTHING from outOfScope should appear anywhere in the session implementation"
+        example: |
+          inScope:
+            - Basic avatar upload functionality
+            - Image resize and optimization
+            - File validation (type, size)
+          outOfScope:
+            - Advanced image editing features
+            - Bulk avatar operations
+            - Social media avatar import
+          onReview:
+            - Avatar deletion functionality
+            - Avatar history tracking
+      
+  technicalContext:
+    informationPlacementRules:
+      contextualRelevance: "Place information where it is most contextually relevant and will be accessed during related activities"
+      scopeBasedPlacement: "General information goes to main sections, specific information goes to relevant subsections or step contexts"
+      domainGrouping: "Group related technical concepts within technicalContext using domain/subdomain structure with unlimited nesting levels for better organization"
+      hierarchicalValue: "Create new subdomains at any nesting level within technicalContext only when such division provides clear organizational or comprehension value"
+      
+  userScenarios:
+    requiredCategories:
+      successfulScenarios: 
+        purpose: "Primary use cases with expected outcomes and verification steps"
+        minimumScenarios: 3
+        structure:
+          scenarioName: "Descriptive name for the scenario"
+          description: "Detailed description of the scenario context and user actions"
+          expectedOutcome: "Specific result that should occur"
+          manualTesting: "Step-by-step testing procedure with verification checkboxes"
+          verification: "Criteria for confirming scenario completion"
+      failureScenarios: 
+        purpose: "Error conditions with expected handling and verification steps"
+        minimumScenarios: 2
+        structure:
+          scenarioName: "Error condition name"
+          triggerCondition: "Specific condition that causes the error"
+          expectedHandling: "How the system should respond to the error"
+          userExperience: "What the user should see and experience"
+          recoveryPath: "How the user can recover or proceed"
+          verification: "Testing steps to confirm proper error handling"
+      edgeCases: 
+        purpose: "Boundary conditions with expected behavior and verification steps"
+        minimumScenarios: 2
+        structure:
+          scenarioName: "Edge case description"
+          boundaryCondition: "Specific boundary or limit being tested"
+          expectedBehavior: "How the system should behave at this boundary"
+          testingApproach: "Specific method to test the boundary condition"
+          verification: "Criteria for confirming proper boundary handling"
+      
+  implementationPlan:
+    stageFormat:
+      stageNumber: 
+        format: "Sequential stage identifier (1, 2, 3, etc.)"
+        purpose: "Clear ordering of implementation phases"
+      stageName: 
+        format: "Descriptive name for implementation stage"
+        example: "User Interface Components Development"
+      rationale: 
+        format: "Why this stage is necessary and its position in sequence"
+        length: "1-2 sentences explaining stage importance and dependencies"
+      technicalContext: 
+        format: "Reference to relevant technicalContext domains/subdomains"
+        example: "*technicalContext.architecture.frontend.components"
+      
+    stepFormat:
+      stepNumber: 
+        format: "Hierarchical step identifier (stage.step, e.g., 1.1, 1.2, 2.1)"
+        purpose: "Clear hierarchical organization within stages"
+      stepName: 
+        format: "Descriptive name for implementation step"
+        length: "Concise but descriptive (max 50 characters)"
+      objective: 
+        format: "Specific goal this step achieves"
+        length: "Single sentence describing step outcome"
+      technicalContext: 
+        format: "Comprehensive implementation details with logical sectioning"
+        lengthLimit: 150
+        sectioningRequired: "Any content over 150 characters must be broken into subsections"
+        organizationPrinciples: "Follow same organization principles as main technicalContext section"
+        comprehensiveness: "Must be exhaustive and complete for implementing the current step without requiring additional context"
+        structureConsistency: "Apply domain-based structure with unlimited nesting levels based on functional or technical step boundaries"
+        informationCompleteness: "Include all technical details, dependencies, patterns, and architectural decisions necessary for step implementation"
+        subsectionRules:
+          minimumSubsections: 2
+          namingConvention: "Descriptive names indicating content"
+          logicalGrouping: "Group related technical concepts"
+      manualTesting: 
+        format: "Specific testing procedures user can perform"
+        structure: "Numbered steps with expected outcomes and verification checkboxes"
+        indirectTesting: "Step testing may use indirect verification methods (e.g., console.log, temporary debugging code) when the result is logically complete but not yet a finished end-user feature"
+        testingFlexibility: "Accept console outputs, debugging statements, or other development-time verification methods as valid testing when appropriate for the step's nature"
+      verification: 
+        format: "Checkboxes for confirming step completion"
+        checkboxTypes: ['implementation', 'testing', 'integration', 'documentation']
+
+# === QUALITY COMPLIANCE ===
+qualityCompliance:
+  purpose: "Comprehensive quality standards ensuring session files meet LAML2 compliance and functional requirements"
+  baseCompliance: *baseSpecifications.lamlPrinciples
+  
+  lamlCompliance:
+    mandatoryCompliance: 'requiredFieldsAndStructure'
+    metaSection: 
+      requirement: "All required $meta fields must be present and accurate with spec reference"
+      validation: "Verify completeness of sessionMetaSpecification fields"
+    sectionStructure: 
+      requirement: "All mandatory sections must be present in correct order"
+      validation: "Verify mandatorySections positioning and completeness"
+    referenceIntegrity: 
+      requirement: "All internal references must resolve correctly"
+      validation: "Check all LAML reference syntax and resolution"
+    
+  contentQuality:
+    problemDefinition: 
+      completeness: "All taskOverview elements must be present and substantive"
+      clarity: "Problem statement must be unambiguous and actionable"
+      measurability: "Success criteria must be specific and testable"
+    scopeBoundariesCompliance:
+      criticalRule: "NOTHING from outOfScope section should appear anywhere in session implementation"
+      structure: "scopeBoundaries must contain all three mandatory subsections: inScope, outOfScope, onReview"
+      validation: "Verify no outOfScope elements are implemented in any session section"
+      enforcement: "All implementation steps must align with inScope elements only"
+      workflowRules:
+        sessionExecution: "During session work, focus exclusively on inScope elements for implementation"
+        sessionUpdates: "During session updates, classify new discovered requirements as inScope, outOfScope, or onReview"
+        requirementClassification: "Any requirement not explicitly in inScope and not in outOfScope MUST be placed in onReview for user decision"
+        scopeDecisionProcess: "Elements in onReview require explicit user decision before moving to inScope or outOfScope"
+        implementationGating: "Implementation activities are gated by inScope classification - no implementation without scope confirmation"
+    technicalCompleteness: 
+      comprehensiveness: "All required technical domains must be addressed"
+      accuracy: "Technical information must be validated against codebase"
+      integration: "Technical context must support implementation steps"
+    scenariosCoverage: 
+      breadth: "All scenario categories must be represented"
+      depth: "Each scenario must include complete testing procedures"
+      realism: "Scenarios must reflect actual user workflows and edge cases"
+    implementationActionability: 
+      specificity: "Implementation steps must be executable without additional clarification"
+      testability: "Each step must produce user-verifiable outcomes through direct or indirect testing methods"
+      completeness: "Implementation plan must cover full scope of work"
+      stepTechnicalContext: "Step-level technicalContext must follow same organizational principles as main technicalContext and be comprehensive for step implementation"
+    verificationMechanisms: 
+      tracking: "Progress tracking must be comprehensive and accurate"
+      validation: "Verification procedures must be manually executable"
+      completion: "Completion criteria must be unambiguous"
+    
+  structuralIntegrity:
+    progressTracking: 
+      consistency: "Checkbox format must be consistent throughout document"
+      completeness: "All implementable elements must have verification checkboxes"
+    contextContinuity: 
+      requirement: "Information must flow logically between sections"
+      validation: "Check for logical connections and proper referencing"
+    updateConsistency: 
+      requirement: "Updates must maintain synchronization across all sections"
+      validation: "Verify information consistency after updates"
+    rollbackSafety: 
+      requirement: "Document structure must support partial completion"
+      validation: "Confirm document remains valid at any completion state"
+    
+  usabilityRequirements:
+    userTestability: 
+      requirement: "All testing procedures must be manually executable by users"
+      validation: "Verify testing steps can be performed without special tools"
+      indirectTestingAcceptance: "Accept indirect testing methods (console.log, debugging code) when step results are logically complete but not end-user visible"
+    specificInstructions: 
+      requirement: "All instructions must be specific enough to execute without clarification"
+      validation: "Check instruction completeness and clarity"
+    outcomeVerification: 
+      requirement: "All steps must produce user-verifiable outcomes"
+      validation: "Confirm outcomes are observable and measurable"
+    errorScenarioHandling: 
+      requirement: "Error scenarios must include specific testing and verification procedures"
+      validation: "Verify error handling completeness and user guidance"
+    
+  technicalInformationFormatting:
+    purpose: "Define string length limits and sectioning requirements for technical content"
+    principle: "Prevent overly long strings by enforcing section breakdown for better readability and organization"
+    
+    lengthRequirements:
+      maximumStringLength: 150
+      enforcement: "Any string longer than 150 characters must be broken down into a section with two or more subsections"
+      stringDefinition: "A continuous text value without structural organization (nested objects or arrays)"
+      
+    sectionBreakdownRules:
+      minimumSubsections: 2
+      subsectionNaming: "Use descriptive names that clearly indicate the content of each subsection"
+      logicalGrouping: "Group related information into coherent subsections based on technical context"
+      
+    compliantExamples:
+      longStringViolation: "technicalInformation: 'Create POST endpoint at /api/profile/avatar with multer middleware for file handling, validation for image types and max 5MB size, S3 upload with unique filename generation using userId and timestamp, update user record with avatarUrl after successful upload, add error handling for upload failures and validation errors'"
+      properSectionBreakdown: |
+        technicalInformation:
+          endpoint: "Create POST /api/profile/avatar endpoint"
+          validation: "Accept only image types (jpeg, png, webp), max size 5MB"
+          storage: "Implement S3 upload with unique filename generation"
+          database: "Update user record with new avatarUrl after successful upload"
+          errorHandling: "Handle upload failures, file validation errors, S3 errors"
+      
+      shortStringAcceptable: "technicalInformation: 'Update component props and add error handling'"
+      
+    validationProcess:
+      characterCount: "Count all characters including spaces in string values"
+      structureCheck: "Verify that long content is organized into meaningful subsections"
+      readabilityReview: "Ensure subsections improve comprehension and logical flow"
+
+# === VALIDATION FRAMEWORK ===
+validationFramework:
+  purpose: "Comprehensive validation criteria for ensuring template compliance and effectiveness"
+  baseValidationProcess: *standardWorkflow
+  
+  structuralValidation:
+    mandatorySections: 
+      validation: "Verify presence and ordering of all mandatory sections"
+      reference: *sessionFileStructure.mandatorySections
+    metadataCompleteness: 
+      validation: "Confirm all required metadata fields are present and properly formatted"
+      reference: *sessionFileStructure.sessionMetaSpecification
+    importRequirements: 
+      validation: "LAML2 specification and session execution specification properly imported"
+      reference: *sessionFileStructure.mandatorySections.sessionImport
+    sectionOrganization: 
+      validation: "Content organized according to LAML2 principles"
+      reference: *baseSpecifications.lamlPrinciples
+    
+  contentValidation:
+    problemDefinition: 
+      validation: "Verify completeness and clarity of problem definition"
+      reference: *contentTemplates.taskOverview
+    scopeBoundariesValidation:
+      validation: "Verify scopeBoundaries section contains all three mandatory subsections and follows workflow rules"
+      structureCheck: "Confirm presence of inScope, outOfScope, and onReview subsections"
+      consistencyCheck: "Verify no implementation elements conflict with outOfScope items"
+      classificationCheck: "Confirm all requirements are properly classified in appropriate scope sections"
+      workflowCompliance: "Validate that session work follows inScope-only implementation rule"
+    technicalContext: 
+      validation: "Confirm comprehensive technical context coverage"
+      reference: *contentTemplates.technicalContext
+    scenarioCompleteness: 
+      validation: "Verify all scenario categories are adequately covered"
+      reference: *contentTemplates.userScenarios
+    implementationStructure: 
+      validation: "Confirm implementation plan is actionable and complete"
+      reference: *contentTemplates.implementationPlan
+    verificationMechanisms: 
+      validation: "Verify progress tracking and verification procedures"
+      reference: *sessionFileStructure.progressTracking
+    
+  functionalValidation:
+    userTestability: 
+      validation: "All testing procedures manually executable"
+      criteria: "Users can perform all specified tests without additional tools or clarification"
+    progressTracking: 
+      validation: "Progress tracking system is comprehensive and functional"
+      reference: *sessionFileStructure.progressTracking
+    contextPreservation: 
+      validation: "Sufficient detail for session resumption"
+      criteria: "Document contains enough information to restore full context after interruption"
+    rollbackCapability: 
+      validation: "Partial completion maintains document integrity"
+      criteria: "Document remains valid and useful at any stage of completion"
+    
+  complianceValidation:
+    laml2Standards: 
+      validation: "Adherence to LAML2 specification requirements"
+      reference: *baseSpecifications.lamlPrinciples
+    sessionStandards: 
+      validation: "Adherence to session execution methodology"
+      reference: "Import from session-laml.mdc for methodology compliance"
+    qualityStandards: 
+      validation: "Comprehensive quality standard compliance"
+      reference: *qualityCompliance
+    lifecycleCompliance:
+      validation: "Session lifecycle management procedures are properly implemented"
+      reference: *sessionLifecycleManagement
+
+# === SESSION FILE GENERATION ===
+sessionFileGeneration:
+  purpose: "Guidelines and procedures for generating compliant session files"
+  
+  generationWorkflow:
+    templateInitialization: "Create base structure using mandatory sections"
+    metadataPopulation: "Fill session metadata according to sessionMetaSpecification"
+    contentScaffolding: "Generate section templates using contentTemplates"
+    validationApplication: "Apply validation framework to ensure compliance"
+    qualityVerification: "Confirm quality compliance before use"
+    
+  automationSupport:
+    templateGeneration: "Support for automated template generation from specifications"
+    validationIntegration: "Built-in validation during generation process"
+    customizationOptions: "Configurable templates for different session types"
+    
+  maintenanceSupport:
+    updateProcedures: "Reference to sessionLifecycleManagement for ongoing maintenance"

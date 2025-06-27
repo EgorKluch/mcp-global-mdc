@@ -1,0 +1,488 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+```yaml
+$meta:
+  name: 'sessionExecutionSpecification'
+  goal: 'llmOptimizedDevelopmentSessionMethodology'
+  version: '4.0.0'
+  purpose: "LLM-optimized systematic approach for complex feature development with structured session execution methodology"
+  tags: ['sessionManagement', 'workflowOptimization']
+  domains: ['development', 'session', 'execution']
+  keyPrinciple: "Structured session execution with systematic methodology and quality standards"
+  apply: 'developmentSessionExecution'
+  spec: '.cursor/rules/laml2.mdc'
+
+$import:
+  sessionTemplate:
+    path: '.cursor/rules/session-laml-template.mdc'
+    purpose: "Complete session file format specification and template structure"
+    usage: "All session file format requirements, structure, lifecycle management, and content templates"
+
+# === DEVELOPMENT PHILOSOPHY ===
+developmentPhilosophy:
+  purpose: 'Core philosophical foundations, principles, and quality standards governing structured session execution'
+  
+  corePhilosophy:
+    systematicApproach:
+      definition: 'Complex development requires systematic breakdown into verifiable stages'
+      rationale: 'LLMs work most effectively with clear, sequential structure and continuous validation'
+      application: "Five stage methodology with user verification"
+      benefits:
+        - 'maintainedContextAcrossComplexImplementations'
+        - 'reducedRiskOfIncompleteIncorrectSolutions'
+        - 'clearProgressTrackingRollbackSafety'
+        - 'comprehensiveDecisionMakingDocumentation'
+    
+    livingDocumentation:
+      definition: 'Session files serve as living documentation of development process'
+      rationale: 'Continuous updates maintain context and enable effective collaboration'
+      application: 'continuousUpdateAfterStepCompletion'
+      sessionFileFormat: '*sessionTemplate.sessionFileStructure'
+      benefits:
+        - 'persistentContextAcrossInterruptions'
+        - 'clearAuditTrailOfDevelopmentDecisions'
+        - 'reducedNeedForReAnalysisInFutureSessions'
+        - 'betterCollaborationThroughSharedUnderstanding'
+
+    userVerification:
+      definition: 'Every step produces user-verifiable outcomes before proceeding'
+      rationale: 'User validation ensures alignment and catches issues early'
+      application: "Manual testing with specific verification criteria"
+      verificationFormat: '*sessionTemplate.sessionFileStructure.progressTracking'
+      benefits: *developmentPhilosophy.corePhilosophy.systematicApproach.benefits
+      
+    informationActualization:
+      definition: 'Session files maintain current and accurate information through direct updates rather than incremental additions'
+      rationale: 'Information must always reflect current state without historical artifacts or progressive clarifications'
+      application: 'replaceOutdatedInformationDirectly'
+      updateProcedures: '*sessionTemplate.sessionLifecycleManagement.updateProcedures'
+      benefits:
+        - 'currentInformationAlwaysAccessible'
+        - 'eliminatedConfusionFromObsoleteDetails'
+        - 'maintainedDocumentClarity'
+        - 'preventedInformationFragmentation'
+      antiPatterns:
+        examples: ['Критическое уточнение:', 'Результаты анализа:', 'Обновление требований:', 'Дополнение к предыдущему:']
+        principle: 'Never add supplementary sections or clarifications - directly update the relevant information in its original location'
+        approach: 'Replace existing content with current understanding rather than appending corrections or updates'
+
+  qualityStandards:
+    analysisApproach:
+      architecturalAssessment: "Identify architecture patterns and integration points through systematic codebase analysis"
+      patternDiscovery: "Use codebase search file search grep search for understanding conventions"
+      designSystemAnalysis: "Identify UI components styling approaches interaction patterns through code analysis"
+      dependencyMapping: "Trace technical architectural and functional dependencies"
+      integrationImpact: "Analyze effects on existing functionality apis and interfaces"
+      riskAssessment: "Identify breaking changes performance impacts implementation specific edge cases"
+      codeQualityReview: "Evaluate existing quality standards to match in implementation"
+      sessionFileContext: '*sessionTemplate.contentTemplates.technicalContext'
+      
+    requirementHandling:
+      zeroAssumptionsPolicy: "Never assume unclear requirements approaches or preferences"
+      explicitGapIdentification: "Systematically document unclear ambiguous or missing information"
+      userClarificationRequirement: "Always request clarification before proceeding with implementation"
+      optionDocumentation: "Document all approaches with implications when multiple valid options exist"
+      assumptionValidation: "Explicitly document and validate any temporary assumptions"
+      progressiveDisclosure: "Request clarification incrementally rather than overwhelming users"
+      earlyConflictDetection: "Identify conflicts during analysis phase before implementation"
+      documentationFormat: '*sessionTemplate.contentTemplates.taskOverview'
+      
+    implementationQuality:
+      systemicAnalysisRequirement: "CRITICAL: Before executing ANY step, conduct comprehensive systemic analysis to identify ALL related code, dependencies, imports, usages, and potential side effects"
+      impactAssessmentMandatory: "Identify ALL files that could be affected by the step execution, including indirect dependencies and usage chains"
+      sideEffectPrevention: "Systematically analyze and prevent any functionality degradation, broken imports, or cascading failures"
+      relatedCodeDiscovery: "Use comprehensive codebase search, grep search, and file analysis to find ALL code related to the step scope"
+      executionSafety: "Never execute step implementation without complete understanding of system impact and related code handling"
+      decompositionStrategy: "Break complex tasks into user testable subtasks"
+      stepCompleteness: "Each step must be self contained and independently verifiable"
+      technicalContextReferences: "Steps must reference relevant sections of the main technicalContext to provide complete technical information for LLM research and implementation"
+      verificationRequirements: "All steps and scenarios must include verification checkboxes"
+      temporaryValidationCode: "Add temporary validation code enabling user testing of partial implementations"
+      riskBasedSubdivision: "Split high risk or unclear steps into smaller substeps"
+      testableMilestones: "Ensure steps produce user verifiable outcomes without requiring complete feature"
+      rollbackSafety: "Structure steps so partial completion maintains system integrity"
+      manualVerification: "All testing refers to user performable actions without automated suites"
+      specificInstructions: "Provide exact testing steps commands and expected outcomes"
+      problemFocus: "Maintain constant reference to original problem and affected users"
+      userScenarioFocus: "Address success failure and edge cases in every implementation step"
+      solutionValidation: "Confirm each step contributes to solving identified problem"
+      progressTransparency: "Communicate how current work addresses core problem"
+      contextContinuity: "Maintain session file format compliance throughout execution"
+      analysisCompleteness: "Cover complete scope of changes through systematic analysis"
+      patternConsistency: "Follow established project patterns and conventions"
+      testingCoverage: "Include comprehensive testing instructions with verification checkboxes"
+      documentationClarity: "Provide specific instructions executable without additional clarification"
+      incrementalValue: "Deliver measurable progress toward objectives in each step"
+      technicalAccuracy: "Validate recommendations against current codebase through systematic analysis"
+      sessionFileFormat: '*sessionTemplate.contentTemplates.implementationPlan'
+      qualityCompliance: '*sessionTemplate.qualityCompliance'
+      
+    complianceValidation:
+      sessionFileCompliance: "Ensure session files follow session template specification requirements"
+      structuralIntegrity: "Maintain required sections and proper organization"
+      metadataCompleteness: "Include all required metadata fields with accurate values"
+      referenceConsistency: 'ensureInternalReferencesResolveCorrectly'
+      importManagement: "Maintain proper import dependencies and trigger conditions"
+      conflictResolution: "Address contradictions before they impact implementation"
+      assumptionValidation: "Validate all assumptions before proceeding with implementation"
+      dependencyVerification: "Confirm all technical dependencies before implementation steps"
+      rollbackSafety: "Ensure each step maintains system integrity if interrupted"
+      templateCompliance: '*sessionTemplate.validationFramework'
+      
+    informationActualityManagement:
+      directInformationUpdate: "Replace outdated information directly in its original location rather than adding clarifications"
+      currentStateReflection: "Ensure all sections reflect the current understanding and decisions without historical artifacts"
+      wholeDocumentValidation: "Verify entire document accuracy and consistency with every update operation"
+      obsoleteInformationRemoval: "Remove or replace information that is no longer accurate or relevant"
+      singleSourceOfTruth: "Maintain each piece of information in its most appropriate location without fragmentation"
+      clarityMaintenance: "Ensure document remains clear and unambiguous without references to previous versions of information"
+      lifecycleManagement: '*sessionTemplate.sessionLifecycleManagement'
+
+    informationOrganization:
+      contextualSectionPlacement: "Place information in the appropriate section based on its contextual purpose and scope"
+      technicalInformationCentralization: "All technical information must be centralized in the main technicalContext section organized by domains and subdomains with unlimited nesting levels"
+      hierarchicalTechnicalContext: "Organize technicalContext information into domains and subdomains with unlimited nesting levels at any depth where such division provides value for understanding and maintainability"
+      sessionFileStructure: '*sessionTemplate.sessionFileStructure.mandatorySections.technicalContext'
+      
+      sectionPurposeAlignment:
+        taskOverview: "Contains problem definition, scope boundaries, affected users, current limitations, and success criteria"
+        technicalContext: "Contains all technical information organized by domains/subdomains with unlimited nesting levels - architecture patterns, dependencies, integration points, existing solutions analysis, and all step-specific technical details"
+        userScenarios: "Contains comprehensive scenario definitions with verification requirements and user workflow descriptions" 
+        implementationPlan: "Contains structured implementation strategy, task decomposition, execution sequence, and progress tracking with references to relevant technicalContext sections"
+        detailedFormat: '*sessionTemplate.contentTemplates'
+        
+      informationPlacementRules:
+        contextualRelevance: "Place information where it is most contextually relevant and will be accessed during related activities"
+        scopeBasedPlacement: "General information goes to main sections, specific information goes to relevant subsections or step contexts"
+        domainGrouping: "Group related technical concepts within technicalContext using domain/subdomain structure with unlimited nesting levels for better organization"
+        hierarchicalValue: "Create new subdomains at any nesting level within technicalContext only when such division provides clear organizational or comprehension value"
+
+# === DEVELOPMENT METHODOLOGY ===
+developmentMethodology:
+  purpose: 'Structured methodology and reusable patterns for systematic development session execution'
+
+  fiveStageFramework:
+    purpose: 'Five-stage structured approach to complex feature development'
+    philosophy: *developmentPhilosophy.corePhilosophy
+    sessionFileSupport: '*sessionTemplate.sessionFileStructure'
+    
+    characteristics:
+      sequentialExecution: "Each stage must complete before next stage begins"
+      independentSteps: "Within stages steps execute independently with clear completion criteria"
+      userVerification: "Every step produces tangible user verifiable outcomes"
+      sessionFileUpdates: "Continuous updates to session file with discoveries and decisions"
+      rollbackSafety: 'partialCompletionMaintainsSystemIntegrity'
+      updateProcedures: '*sessionTemplate.sessionLifecycleManagement.updateProcedures'
+    
+    stageDefinitions:
+      taskAnalysis:
+        stageNumber: 1
+        purpose: "Build comprehensive understanding of task requirements and scope"
+        objective: "Complete problem analysis and technical context discovery"
+        outcomes: ['problemStatement', 'technicalContextMap', 'userScenariosDefinition', 'designSystemAnalysis']
+        qualityStandards: *developmentPhilosophy.qualityStandards.analysisApproach
+        sessionFileTarget: '*sessionTemplate.contentTemplates.taskOverview'
+        
+      requirementsClarification:
+        stageNumber: 2
+        purpose: "Resolve uncertainties and establish clear implementation requirements"
+        objective: "Eliminate ambiguities and document all decisions"
+        outcomes: ['requirementGapResolution', 'technicalApproachSelection', 'riskAssessment', 'finalizedRequirements']
+        qualityStandards: *developmentPhilosophy.qualityStandards.requirementHandling
+        sessionFileTarget: '*sessionTemplate.contentTemplates.technicalContext'
+        
+      implementationPlanning:
+        stageNumber: 3
+        purpose: 'createDetailedActionableImplementationStrategy'
+        objective: "Define architecture decompose tasks sequence implementation"
+        outcomes: ['architectureSelection', 'taskDecomposition', 'implementationSequence']
+        qualityStandards: *developmentPhilosophy.qualityStandards.implementationQuality
+        sessionFileTarget: '*sessionTemplate.contentTemplates.implementationPlan'
+        
+      implementationExecution:
+        stageNumber: 4
+        purpose: "Deliver working functionality with continuous verification"
+        objective: "Implement features step by step with user validation"
+        outcomes: ['workingImplementation', 'verifiedFunctionality', 'systemIntegration']
+        qualityStandards: *developmentPhilosophy.qualityStandards.implementationQuality
+        sessionFileUpdates: '*sessionTemplate.sessionLifecycleManagement.updateTriggers'
+        
+      verificationQualityAssurance:
+        stageNumber: 5
+        purpose: "Ensure implementation meets requirements and quality standards"
+        objective: 'completeFunctionalAndQualityVerification'
+        outcomes: ['requirementVerification', 'uxValidation', 'codeQualityAssessment']
+        qualityStandards: *developmentPhilosophy.qualityStandards.complianceValidation
+        sessionFileTarget: '*sessionTemplate.contentTemplates.userScenarios'
+
+  processPatterns:
+    purpose: 'Reusable patterns for consistent session execution across all stages'
+    
+    corePatterns:
+      problemAnalysis: ['identifyActualProblem', 'analyzeAffectedUsers', 'understandPainPoints', 'defineSuccessCriteria']
+      technicalDiscovery: ['useCodebaseSearch', 'identifyRelevantFiles', 'traceDependencies', 'analyzeArchitecture']
+      scenarioDefinition: ['createSuccessScenarios', 'defineFailureScenarios', 'identifyEdgeCases', 'establishTestingProcedures']
+      designSystemAnalysis: ['identifyUiComponents', 'analyzeStylingPatterns', 'understandInteractionPatterns']
+      requirementGapAnalysis: ['compareGoalsVsCapabilities', 'identifyDecisionPoints', 'flagAmbiguousSpecs']
+      optionsAnalysis: ['researchImplementationOptions', 'analyzeTechnicalTradeoffs', 'estimateEffortComplexity']
+      riskEvaluation: ['assessTechnicalRisks', 'identifyBreakingChanges', 'evaluatePerformanceImplications']
+      
+    stepStructure:
+      stepNumber: 'numericDotNotation'
+      objective: 'singleClearObjectiveStatement'
+      process: 'systematicProcessStepsArray'
+      deliverable: 'tangibleUserVerifiableOutcome'
+      sessionFileUpdate: 'sessionFileUpdateRequirement'
+      qualityStandards: 'referenceToApplicablePhilosophyStandards'
+      technicalInformationFormat: '*sessionTemplate.qualityCompliance.technicalInformationFormatting'
+
+# === IMPLEMENTATION EXECUTION ===
+implementationExecution:
+  purpose: 'Detailed execution specifications for implementing each development stage'
+  methodology: *developmentMethodology.fiveStageFramework
+  patterns: *developmentMethodology.processPatterns
+  sessionFileFormat: '*sessionTemplate.sessionFileStructure'
+  
+  stage1TaskAnalysis:
+    steps:
+      problemAnalysisContextDefinition:
+        stepNumber: '1.1'
+        objective: "Understand specific problem affected users and current limitations"
+        process: *developmentMethodology.processPatterns.corePatterns.problemAnalysis
+        deliverable: "Problem statement with root cause analysis and user focused success criteria"
+        sessionFileUpdate: "Create and populate ONLY taskOverview section with problem analysis findings"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.taskOverview'
+        scope: "taskOverviewSectionOnly"
+        
+      technicalContextDiscovery:
+        stepNumber: '1.2'
+        objective: "Map existing technical landscape through systematic codebase analysis"
+        process: *developmentMethodology.processPatterns.corePatterns.technicalDiscovery
+        deliverable: "Technical context map with architecture patterns and integration points"
+        sessionFileUpdate: "Update technicalContext section with comprehensive technical findings"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.technicalContext'
+        
+      userScenariosDefinition:
+        stepNumber: '1.3'
+        objective: "Define comprehensive scenarios with verification requirements"
+        process: *developmentMethodology.processPatterns.corePatterns.scenarioDefinition
+        deliverable: "Complete user scenarios with manual testing checkboxes and impact analysis"
+        sessionFileUpdate: "Create user scenarios section with all scenarios and verification requirements"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.userScenarios'
+        
+      designSystemUxContextDiscovery:
+        stepNumber: '1.4'
+        objective: "Analyze existing design patterns and UX approaches through code analysis"
+        process: *developmentMethodology.processPatterns.corePatterns.designSystemAnalysis
+        deliverable: "Design system analysis aligned with user scenario requirements"
+        sessionFileUpdate: "Update technicalContext section with design system analysis findings"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.technicalContext.designSystemAnalysis'
+
+  stage2RequirementsClarification:
+    steps:
+      requirementGapIdentification:
+        stepNumber: '2.1'
+        objective: "Systematically identify unclear ambiguous or missing requirements"
+        process: *developmentMethodology.processPatterns.corePatterns.requirementGapAnalysis
+        deliverable: "Comprehensive requirement gaps list with specific questions"
+        sessionFileUpdate: "Document identified gaps requiring user clarification"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.taskOverview'
+        
+      technicalApproachOptionsAnalysis:
+        stepNumber: '2.2'
+        objective: "Present viable technical approaches with implications analysis"
+        process: *developmentMethodology.processPatterns.corePatterns.optionsAnalysis
+        deliverable: "Technical options matrix with pros cons and effort estimates"
+        sessionFileUpdate: "Record technical options analysis for user decision making"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.technicalContext'
+        
+      riskComplexityEvaluation:
+        stepNumber: '2.3'
+        objective: 'identifyRisksBreakingChangesAndComplexityFactors'  
+        process: *developmentMethodology.processPatterns.corePatterns.riskEvaluation
+        deliverable: "Risk matrix with mitigation strategies and complexity assessment"
+        sessionFileUpdate: "Update technicalContext with comprehensive risk assessment"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.technicalContext.riskAssessment'
+        
+      userPreferenceConstraintClarification:
+        stepNumber: '2.4'
+        objective: "Resolve user preferences constraints and decision points"
+        process: ['presentDecisionPoints', 'requestUserPreferences', 'documentConstraints']
+        deliverable: "Decision log with preferences constraints and validated assumptions"
+        sessionFileUpdate: "Update technicalContext with user decisions and constraints"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.technicalContext.userDecisions'
+        
+      requirementsValidationFinalization:
+        stepNumber: '2.5'
+        objective: "Ensure requirements are clear complete and implementable"
+        process: ['validateCompleteness', 'confirmTechnicalFeasibility', 'verifyUserAcceptance']
+        deliverable: "Finalized requirements with specifications and acceptance criteria"
+        sessionFileUpdate: "Update task overview and technical context with final requirements"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.taskOverview'
+
+  stage3ImplementationPlanning:
+    steps:
+      architecturePatternSelection:
+        stepNumber: '3.1'
+        objective: "Define technical architecture aligned with existing codebase"
+        process: ['analyzeExistingPatterns', 'selectArchitecturalApproach', 'defineIntegrationStrategy']
+        deliverable: "Architecture plan with patterns and integration strategy"
+        sessionFileUpdate: "Update technicalContext with selected architecture"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.technicalContext.architecture'
+        
+      taskDecompositionStrategy:
+        stepNumber: '3.2'
+        objective: "Break implementation into user testable independent steps"
+        process: ['identifyImplementationPhases', 'defineStepBoundaries', 'ensureUserTestableOutcomes']
+        deliverable: "Detailed task breakdown with verification checkboxes"
+        sessionFileUpdate: "Create implementation plan section with structured stages and steps"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.implementationPlan'
+        
+      implementationSequencePlanning:
+        stepNumber: '3.3'
+        objective: "Define optimal implementation order considering dependencies and risk"
+        process: ['analyzeStepDependencies', 'prioritizeByRiskValue', 'planValidationPoints']
+        deliverable: "Implementation sequence with dependency mapping and validation checkpoints"
+        sessionFileUpdate: "Finalize implementation plan with optimal sequence and rationale"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.implementationPlan'
+
+  stage4ImplementationExecution:
+    steps:
+      preImplementationEnvironmentPreparation:
+        stepNumber: '4.1'
+        objective: 'ensureDevelopmentEnvironmentReadiness'
+        process: ['verifyToolAvailability', 'checkDependencyVersions', 'validateDevelopmentSetup']
+        deliverable: 'environmentReadinessConfirmation'
+        sessionFileUpdate: "Update technicalContext with environment confirmation"
+        sessionFileTarget: *sessionTemplate.contentTemplates.technicalContext
+        
+      iterativeImplementationContinuousValidation:
+        stepNumber: '4.2'
+        objective: "Implement functionality step by step with immediate user testing"
+        process: ['implementSingleStep', 'addTemporaryValidation', 'implementErrorHandling', 'provideTestingInstructions']
+        deliverable: "Working implementation with comprehensive testing procedures"
+        sessionFileUpdate: "Mark verification checkboxes complete after user confirmation"
+        sessionFileTarget: *sessionTemplate.sessionFileStructure.progressTracking
+        
+      integrationSystemTesting:
+        stepNumber: '4.3'
+        objective: "Ensure components integrate properly with existing system"
+        process: ['testComponentIntegration', 'verifySystemCompatibility', 'validateEndToEndWorkflows']
+        deliverable: "Integration test results with compatibility verification"
+        sessionFileUpdate: "Update technicalContext with integration test findings"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.technicalContext'
+
+  stage5VerificationQualityAssurance:
+    steps:
+      functionalVerificationAgainstRequirements:
+        stepNumber: '5.1'
+        objective: "Systematically verify all requirements are met"
+        process: ['mapImplementationToRequirements', 'testSpecifiedFunctionality', 'verifyAcceptanceCriteria']
+        deliverable: "Requirements verification matrix with fulfillment status"
+        sessionFileUpdate: 'markRequirementVerificationCheckboxesComplete'
+        sessionFileTarget: '*sessionTemplate.contentTemplates.userScenarios'
+        
+      userExperienceWorkflowValidation:
+        stepNumber: '5.2'
+        objective: "Ensure positive user experience and workflow support"
+        process: ['testCompleteUserWorkflows', 'validateInterfaceInteractions', 'confirmErrorHandlingUx']
+        deliverable: "UX validation report with workflow verification"
+        sessionFileUpdate: "Mark UX validation and user scenarios checkboxes complete"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.userScenarios'
+        
+      codeQualityPatternConsistencyAssessment:
+        stepNumber: '5.3'
+        objective: 'ensureImplementationFollowsProjectStandards'
+        process: ['reviewCodeAgainstPatterns', 'validateNamingConventions', 'assessMaintainability']
+        deliverable: "Code quality assessment with pattern compliance evaluation"
+        sessionFileUpdate: "Update technicalContext with quality assessment confirmation"
+        sessionFileTarget: '*sessionTemplate.contentTemplates.technicalContext'
+
+# === SCENARIOS ===
+scenarios:
+  purpose: 'Concrete development situations and systematic approaches for applying the methodology'
+  
+  commonWorkflow:
+    standardProcess: 'analyze, validate, design, implement, verify'
+    resources: ['sessionFile', 'sessionTemplate', 'developmentPhilosophy']
+    methodology: *developmentMethodology
+    sessionTemplate: '*sessionTemplate'
+  
+  sessionCreation:
+    triggers: ['Start development session', 'Begin complex task', 'Initialize feature development', 'Create session file']
+    description: 'User initiates new structured development session with initial problem analysis and clarification questions'
+    workflow: *scenarios.commonWorkflow.standardProcess
+    specialization:
+      analyze: 'Parse task requirements and identify session scope and complexity level'
+      validate: 'Ensure session approach appropriateness and resource availability'
+      design: 'Plan session structure focusing on problem understanding and requirement clarification'
+      implement: 'Execute problemAnalysisContextDefinition to populate taskOverview section only, then ask clarifying questions'
+      verify: 'Confirm taskOverview section completeness and user understanding before proceeding'
+    executionSteps:
+      step1: 'Execute problemAnalysisContextDefinition step (1.1) to create session file with populated taskOverview section'
+      step2: 'Ask clarifying questions about requirements, preferences, and constraints as part of session creation'
+      step3: 'Wait for user responses and clarification before proceeding to further analysis stages'
+    resources: ['taskRequirements', 'sessionTemplate', 'problemAnalysisPattern']
+    outcomes: ['sessionFileWithTaskOverview', 'clarifyingQuestions', 'userRequirementUnderstanding']
+    scope: 'problemAnalysisAndClarificationOnly'
+    sessionFileTemplate: '*sessionTemplate.sessionFileGeneration'
+    
+  stageExecution:
+    triggers: ['Execute stage', 'Continue session', 'Next development phase', 'Complete analysis stage']
+    description: 'User executes specific stages of active development session with systematic verification'
+    workflow: *scenarios.commonWorkflow.standardProcess
+    methodology: *developmentMethodology.fiveStageFramework
+    execution: *implementationExecution
+    specialization:
+      analyze: 'Assess current stage requirements and identify necessary research and analysis'
+      validate: 'Check stage completion criteria and user verification readiness'
+      design: 'Plan stage execution approach and define deliverable verification procedures'
+      implement: 'Execute stage steps with continuous session file updates and user verification'
+      verify: 'Confirm stage completion and readiness for next stage progression'
+    resources: ['activeSessionFile', 'stageDefinitions', 'verificationProcedures']
+    outcomes: ['completedStageDeliverables', 'updatedSessionFile', 'verifiedProgress']
+    sessionFileSupport: '*sessionTemplate.sessionLifecycleManagement'
+    
+  sessionUpdate:
+    triggers: ['Update session', 'Record findings', 'Document decisions', 'Save progress']
+    description: 'Continuous session file maintenance and context preservation during development'
+    workflow: *scenarios.commonWorkflow.standardProcess
+    specialization:
+      analyze: 'Identify new discoveries, decisions, and progress requiring documentation'
+      validate: 'Check information accuracy and session file structure consistency with LAML2 principles compliance'
+      design: 'Plan optimal information integration maintaining session file coherence through direct information replacement'
+      implement: 'Update relevant session file sections by replacing existing content with current findings and decisions'
+      verify: 'Confirm session file accuracy, current state integrity, and whole document consistency'
+    updateProtocols: '*sessionTemplate.sessionLifecycleManagement.updateProcedures'
+    outcomes: ['updatedSessionFile', 'preservedContext', 'maintainedCoherence']
+    
+  sessionResumption:
+    triggers: ['Resume session', 'Continue interrupted work', 'Restore development context']  
+    description: 'Restoration of development context and continuation of interrupted complex development session'
+    workflow: *scenarios.commonWorkflow.standardProcess
+    specialization:
+      analyze: 'Assess session file state and identify current development position and next steps'
+      validate: 'Check session file integrity and verify last completed verification checkpoint'
+      design: 'Plan session resumption approach considering elapsed time and context changes'
+      implement: 'Restore development context and continue from last verified checkpoint'
+      verify: 'Confirm context restoration accuracy and readiness for continued development'
+    resources: ['existingSessionFile', 'contextRestorationProcedures', 'verificationHistory']
+    outcomes: ['restoredContext', 'continuedDevelopment', 'verifiedProgression']
+    sessionFileValidation: '*sessionTemplate.validationFramework'
+    
+  sessionCompletion:
+    triggers: ['Complete session', 'Finish feature development', 'Archive session', 'Finalize implementation']
+    description: 'Systematic completion and archival of successful development session with final verification'
+    workflow: *scenarios.commonWorkflow.standardProcess
+    specialization:
+      analyze: 'Assess session completion status and identify final verification requirements'
+      validate: 'Check all stage completion criteria and user acceptance verification'
+      design: 'Plan session closure procedures and knowledge preservation approach'
+      implement: 'Execute final verification steps and archive session with completion documentation'
+      verify: 'Confirm session objectives achievement and knowledge preservation completeness'
+    resources: ['completedSessionFile', 'verificationResults', 'archivalProcedures']
+    outcomes: ['completedFeature', 'archivedSession', 'preservedKnowledge']
+    sessionFileArchival: '*sessionTemplate.sessionLifecycleManagement.versionManagement'

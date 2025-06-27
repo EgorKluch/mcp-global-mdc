@@ -1,0 +1,464 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+$meta:
+  name: "mcpCreation"
+  goal: "Provide comprehensive foundation for creating MCP (Model Context Protocol) servers"
+  domain: "development.mcp.server"
+  apply: "mcpDevelopment"
+  version: 3.0
+  purpose: "Enable rapid creation and deployment of MCP servers with proper TypeScript architecture, error handling, and testing"
+  domains: ["development.mcp.server", "architecture.typescript.module", "testing.jest.configuration"]
+
+architecture:
+  purpose: "Define MCP server architecture patterns and essential components"
+  
+  projectStructure:
+    foundation:
+      packageJson: "Project manifest with MCP SDK dependencies and ES module configuration"
+      tsconfig: "TypeScript configuration with NodeNext module resolution"
+      mainEntry: "src/index.ts as primary server implementation"
+      configurationTemplate: "Empty JSON configuration template for optional use"
+      testing: "Jest-based testing framework with ES module support"
+      build: "TypeScript compilation to CommonJS for Node.js execution"
+      
+    directoryLayout:
+      src: "Main source code directory containing server implementation"
+      tests: "Test files within src/__tests__ directory"
+      config: "Configuration template files at project root"
+      dist: "Compiled output directory (generated)"
+      
+    fileNaming:
+      main: "index.ts for server entry point"
+      configExample: "config.example.json as empty template for optional configuration"
+      tests: "*.test.ts files for testing"
+
+  coreComponents:
+    serverClass:
+      definition: "Main server class extending MCP SDK functionality"
+      responsibility: "Tool registration, request handling, and server lifecycle management"
+      structure: "Constructor with server initialization, tool setup, and run method"
+      
+    toolHandlers:
+      listTools: "Handler for ListToolsRequestSchema returning available tools"
+      callTool: "Handler for CallToolRequestSchema routing to specific tool implementations"
+      validation: "Input schema validation for each tool"
+      
+    configuration:
+      template: "Configuration template with example values"
+      loading: "Async configuration loader with error handling (optional)"
+      validation: "Configuration validation with detailed error messages (optional)"
+      types: "TypeScript interfaces for configuration structure"
+      
+    errorHandling:
+      types: "Enumerated error types for categorization"
+      responses: "Standardized success/failure response types"
+      propagation: "Error propagation through async call chains"
+
+dependencies:
+  purpose: "Essential dependencies and configuration for MCP development"
+  
+  core:
+    mcpSdk: "@modelcontextprotocol/sdk for MCP protocol implementation"
+    version: "^0.4.0 or latest stable version"
+    modules: ["server/index.js", "server/stdio.js", "types.js"]
+    
+  development:
+    typescript: "TypeScript compiler for development and build"
+    jest: "Testing framework with ES module support"
+    tsJest: "TypeScript transformer for Jest with ES module support"
+    types: "@types/jest and @types/node for TypeScript support"
+    
+  packageConfig:
+    type: "module for ES module support"
+    main: "Compiled JavaScript entry point"
+    scripts: "build, dev, test (with NODE_OPTIONS), test-dev, start commands"
+    engines: "Node.js 18+ requirement"
+    nodeOptions: "Use NODE_OPTIONS=--experimental-vm-modules for Jest ES module support"
+
+implementation:
+  purpose: "Implementation patterns and code structure for MCP servers"
+  
+  serverInitialization:
+    serverCreate: "new Server() with name and version metadata"
+    transportSetup: "StdioServerTransport for Cursor integration"
+    connection: "server.connect(transport) for protocol establishment"
+    errorHandling: "Process error handling and graceful shutdown"
+    
+  toolDefinition:
+    schema:
+      name: "Unique tool identifier"
+      description: "Human-readable tool purpose"
+      inputSchema: "JSON schema for tool parameters"
+      required: "Array of required parameter names"
+      additionalProperties: "Disable additional properties for strict validation"
+      
+    implementation:
+      routing: "Tool name-based routing in CallToolRequestSchema handler"
+      validation: "Input parameter validation and type casting"
+      processing: "Business logic implementation"
+      response: "Standardized response format with content array"
+      
+      configurationPattern:
+    template:
+      exampleFile: "config.example.json as empty template - users can add configuration as needed"
+      documentation: "Clear documentation of configuration options in README"
+      validation: "Optional configuration validation if needed"
+      
+    loading:
+      optional: "Configuration loading is optional - can hardcode values"
+      fileAccess: "Check configuration file existence if using config files"
+      parsing: "JSON.parse with error handling if using config files"
+      pathResolution: "Resolve relative paths to absolute paths if needed"
+      
+    errorTypes:
+      configParsing: "Configuration file parsing errors (if using config files)"
+      operationError: "Runtime operation errors"
+      validation: "Input validation errors"
+      
+  responseStructure:
+    success: "Boolean success indicator"
+    content: "Array of content objects with type and text fields"
+    errors: "Array of error objects with type and message fields"
+    format: "JSON serialization for MCP protocol compliance"
+
+testing:
+  purpose: "Testing strategy and configuration for MCP servers"
+  
+  framework:
+    jest: "Testing framework with ES module support"
+    tsJest: "TypeScript transformer with ESM preset"
+    environment: "Node.js testing environment"
+    nodeOptions: "NODE_OPTIONS=--experimental-vm-modules required for ES modules"
+    
+  configuration:
+    preset: "ts-jest/presets/default-esm for ES module support"
+    transform: "ts-jest with useESM: true configuration"
+    moduleMapper: "Map .js imports to TypeScript files"
+    typeScript: "isolatedModules: true required for hybrid modules"
+    
+  patterns:
+    setup:
+      tempDirectories: "Temporary directories for file operations"
+      mockConfig: "Configuration mocking for test isolation (if using config files)"
+      cleanup: "Proper cleanup in afterEach and afterAll"
+      dependencies: "Install dependencies before running tests"
+      
+    testCases:
+      successScenarios: "Valid operations with expected outcomes"
+      errorScenarios: "Invalid inputs and error conditions"
+      edgeCases: "Empty inputs, missing files, permission errors"
+      fileOperations: "File system operations with verification"
+      
+    assertions:
+      responseStructure: "Validate response format and content"
+      fileOperations: "Verify file creation, copying, and deletion"
+      errorHandling: "Validate error types and messages"
+      configurationParsing: "Validate configuration loading and validation (if using config files)"
+
+deployment:
+  purpose: "Deployment and integration patterns for MCP servers"
+  
+  buildProcess:
+    compilation: "TypeScript compilation to JavaScript"
+    outputDirectory: "dist/ directory for compiled code"
+    moduleResolution: "CommonJS output for Node.js compatibility"
+    sourceMapping: "Source maps for debugging"
+    
+  cursorIntegration:
+    configuration:
+      name: "Unique MCP server identifier"
+      command: "node executable path"
+      args: "Path to compiled index.js"
+      restart: "Cursor restart required for configuration changes"
+      
+    setupSteps:
+      build: "Compile TypeScript to JavaScript"
+      configure: "Add MCP server to Cursor settings"
+      restart: "Restart Cursor for activation"
+      verify: "Test MCP tools availability"
+      
+  configurationManagement:
+    template: "config.example.json as empty template - users can customize as needed"
+    runtime: "Optional config.json for actual configuration - can be omitted"
+    validation: "Configuration validation on server startup (if using config files)"
+    documentation: "Clear setup instructions for end users"
+
+bestPractices:
+  purpose: "Best practices and conventions for MCP development"
+  
+  codeOrganization:
+    singleResponsibility: "Each tool should have single, clear purpose"
+    errorHandling: "Comprehensive error handling with detailed messages"
+    typeScript: "Full TypeScript typing for type safety with isolatedModules"
+    esModules: "ES module syntax with proper Node.js compatibility"
+    cleanupImports: "Remove unused imports when deleting files or features"
+    
+  security:
+    inputValidation: "Strict input validation for all tools"
+    pathSanitization: "Path sanitization for file operations"
+    errorMessages: "Safe error messages without sensitive information"
+    accessControl: "Proper file access permissions"
+    
+  performance:
+    asyncOperations: "Async/await for I/O operations"
+    errorShortCircuit: "Early return on errors"
+    resourceCleanup: "Proper resource cleanup"
+    streamingResponses: "Streaming for large data sets"
+    
+  maintenance:
+    testing: "Comprehensive test coverage with working Jest configuration"
+    documentation: "Clear API documentation"
+    logging: "Appropriate logging for debugging"
+    versioning: "Semantic versioning for updates"
+    dependencyManagement: "Keep dependencies minimal and up-to-date"
+    configurationValidation: "Test configurations before deployment"
+
+scenarios:
+  purpose: "Common scenarios and implementation approaches for MCP development"
+  
+  newMcpServer:
+    triggers: ["Create MCP server", "New MCP project", "MCP development"]
+    description: "User requests creation of new MCP server from scratch"
+    workflow:
+      analyze: "Understand MCP requirements and intended functionality"
+      design: "Plan server architecture and tool structure"
+      implement: "Create project structure with dependencies and configuration template"
+      test: "Implement comprehensive testing suite"
+      document: "Create setup and usage documentation"
+      deploy: "Prepare for Cursor integration"
+    resources: ["mcpSdk", "projectTemplate", "testingFramework"]
+    outcomes: ["functionalMcpServer", "testSuite", "documentation", "cursorIntegration"]
+    
+  addMcpTool:
+    triggers: ["Add MCP tool", "New MCP functionality", "Extend MCP server"]
+    description: "User requests adding new tool to existing MCP server"
+    workflow:
+      analyze: "Understand tool requirements and input/output schema"
+      design: "Design tool interface and implementation"
+      implement: "Add tool to server with proper validation"
+      test: "Create comprehensive tests for new tool"
+      integrate: "Update tool registration and routing"
+      verify: "Validate tool functionality and error handling"
+    resources: ["existingServer", "toolSchema", "testFramework"]
+    outcomes: ["newTool", "updatedServer", "testCoverage", "documentation"]
+    
+  mcpDebugging:
+    triggers: ["Debug MCP", "MCP not working", "Fix MCP issues"]
+    description: "User requests help with MCP server debugging and troubleshooting"
+    workflow:
+      analyze: "Identify symptoms and potential causes"
+      validate: "Check configuration, dependencies, and integration"
+      test: "Reproduce issues and validate fixes"
+      implement: "Apply fixes and improvements"
+      verify: "Confirm resolution and prevent regression"
+    resources: ["logs", "configuration", "testSuite", "documentation"]
+    outcomes: ["resolvedIssues", "improvedErrorHandling", "betterLogging"]
+    
+  mcpMaintenance:
+    triggers: ["Update MCP", "Maintain MCP server", "MCP optimization"]
+    description: "User requests maintenance, updates, or optimization of existing MCP server"
+    workflow:
+      analyze: "Assess current server state and requirements"
+      plan: "Identify improvements and maintenance tasks"
+      implement: "Apply updates, optimizations, and maintenance"
+      test: "Validate changes and ensure compatibility"
+      deploy: "Update deployment and documentation"
+    resources: ["existingServer", "updateRequirements", "testSuite"]
+    outcomes: ["optimizedServer", "updatedDependencies", "improvedPerformance"]
+
+examples:
+  purpose: "Code examples and templates for common MCP patterns"
+  
+  packageJsonExample: |
+    {
+      "name": "my-mcp-server",
+      "version": "1.0.0",
+      "type": "module",
+      "main": "dist/index.js",
+      "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch",
+        "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+        "test-dev": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll",
+        "start": "npm run build && node dist/index.js"
+      },
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.4.0"
+      },
+      "devDependencies": {
+        "@types/jest": "^29.5.0",
+        "@types/node": "^20.0.0",
+        "jest": "^29.7.0",
+        "ts-jest": "^29.1.0",
+        "typescript": "^5.0.0"
+      }
+    }
+    
+  jestConfigExample: |
+    export default {
+      preset: 'ts-jest/presets/default-esm',
+      testEnvironment: 'node',
+      extensionsToTreatAsEsm: ['.ts'],
+      testMatch: ['**/__tests__/**/*.test.ts'],
+      moduleNameMapper: {
+        '^(\\.{1,2}/.*)\\.js$': '$1',
+      },
+      transform: {
+        '^.+\\.ts$': ['ts-jest', {
+          useESM: true
+        }],
+      },
+      collectCoverageFrom: [
+        'src/**/*.ts',
+        '!src/**/*.test.ts',
+        '!src/__tests__/**/*',
+      ],
+    };
+    
+  tsConfigExample: |
+    {
+      "compilerOptions": {
+        "target": "ES2022",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "declaration": true,
+        "sourceMap": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "isolatedModules": true
+      },
+      "include": ["src/**/*"],
+      "exclude": ["node_modules", "dist", "**/*.test.ts"]
+    }
+  
+  basicServerStructure: |
+    export class McpServer {
+      private server: Server;
+      
+      constructor() {
+        this.server = new Server({
+          name: 'my-mcp-server',
+          version: '1.0.0',
+        });
+        this.setupToolHandlers();
+      }
+      
+      setupToolHandlers() {
+        this.server.setRequestHandler(ListToolsRequestSchema, async () => {
+          return { tools: [...] };
+        });
+        
+        this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
+          const { name, arguments: args } = request.params;
+          // Route to appropriate handler
+        });
+      }
+      
+      async run() {
+        const transport = new StdioServerTransport();
+        await this.server.connect(transport);
+      }
+    }
+    
+  toolSchema: |
+    {
+      name: 'toolName',
+      description: 'Tool description',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          param: {
+            type: 'string',
+            description: 'Parameter description'
+          }
+        },
+        required: ['param'],
+        additionalProperties: false
+      }
+    }
+    
+  errorHandling: |
+    enum ErrorType {
+      CONFIGURATION_ERROR = 'CONFIGURATION_ERROR',
+      OPERATION_ERROR = 'OPERATION_ERROR',
+      VALIDATION_ERROR = 'VALIDATION_ERROR'
+    }
+    
+    type McpResponse = {
+      success: boolean;
+      errors?: Array<{
+        type: ErrorType;
+        message: string;
+      }>;
+    };
+    
+  configurationPattern: |
+    // Optional configuration loading pattern (if needed)
+    private async loadConfig(): Promise<{
+      success: true;
+      config: Config;
+    } | {
+      success: false;
+      error: { type: ErrorType; message: string };
+    }> {
+      try {
+        const configPath = path.resolve(__dirname, '../config.json');
+        await fs.access(configPath);
+        const configContent = await fs.readFile(configPath, 'utf-8');
+        const config = JSON.parse(configContent);
+        
+        // Validate configuration
+        if (!config.requiredField) {
+          return {
+            success: false,
+            error: {
+              type: ErrorType.CONFIGURATION_ERROR,
+              message: 'Required field missing'
+            }
+          };
+        }
+        
+        return { success: true, config };
+      } catch (error) {
+        return {
+          success: false,
+          error: {
+            type: ErrorType.CONFIGURATION_ERROR,
+            message: `Configuration error: ${error.message}`
+          }
+        };
+      }
+    }
+    
+commonIssues:
+  purpose: "Common issues and their solutions for MCP development"
+  
+  jestConfiguration:
+    problem: "Jest fails with ES module errors or preset not found"
+    solution: "Use ts-jest with proper ESM configuration and NODE_OPTIONS=--experimental-vm-modules"
+    avoidBabel: "Don't use babel-jest with TypeScript - use ts-jest directly"
+    
+  typeScriptESModules:
+    problem: "TypeScript compilation issues with ES modules"
+    solution: "Use module: 'NodeNext', moduleResolution: 'NodeNext', and isolatedModules: true"
+    
+  dependencyConflicts:
+    problem: "Conflicting transpiler dependencies (babel vs ts-jest)"
+    solution: "Choose one approach - prefer ts-jest for TypeScript projects"
+    
+  deletedFileCleanup:
+    problem: "Imports remain after deleting files, causing build errors"
+    solution: "Always remove imports and references when deleting files"
+    
+  configurationOptional:
+    problem: "Forcing configuration when it's not needed"
+    solution: "Make configuration truly optional - use empty config.example.json"

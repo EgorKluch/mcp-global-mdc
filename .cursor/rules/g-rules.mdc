@@ -7,14 +7,13 @@ alwaysApply: true
 $meta:
   name: 'cursorRuleGeneration'
   goal: 'llmOptimizedRuleManagement'
-  domain: 'cursorRules/ruleManagement/systemManagement'
+  domain: 'cursorRules.ruleManagement.systemManagement'
   apply: 'cursorRulesDirectory'
-  version: '11.0.0'
+  version: 11.0
   contextLimitations: 'cursorRulesOnly'
   purpose: "LLM-optimized scenario-based methodology for cursor rule management leveraging LLM judgment and trust-based design"
   mustContain: ['principles', 'rules', 'workflows', 'scenarios', 'standards']
-  tags: ['ruleManagement', 'systemArchitecture', 'domainOrganization']
-  domains: ['cursorRules', 'ruleManagement', 'systemManagement']
+  domains: ['rules.management.system', 'workflow.optimization.llm', 'architecture.component.modular']
   keyPrinciple: 'llmTrustAndScenarioEfficiency'
   specificationPath: '.cursor/rules/laml2.mdc'
 
@@ -72,8 +71,8 @@ rules:
       usage: "Required for all rule management operations"
       role: "Primary coordination point for system-wide operations"
       structure: 'hierarchicalDomainTree'
-      contains: ['domainHierarchy', 'ruleRegistry', 'tagIndex']
-      maintainAfter: ['anyRuleChange', 'domainReorganization', 'tagsUpdate']
+      contains: ['domainHierarchy', 'ruleRegistry']
+      maintainAfter: ['anyRuleChange', 'domainReorganization']
       
     file:
       definition: "Physical file containing one or more related rule directives"
@@ -89,58 +88,73 @@ rules:
     
   organization:
     domains:
-      purpose: "Define hierarchical domain path from general to specific - WHERE rules apply"
-      definition: "Each rule has exactly one specific domain but lists complete hierarchical path from root to target domain"
-      format: 'hierarchicalPathArray'
-      structure: 'generalToSpecific'
+      purpose: "Define domain specification using dot notation - WHERE and WHAT rules apply"
+      definition: "Each rule specifies up to 3 non-overlapping domains in dot notation format with maximum 4 levels deep"
+      format: 'dot.notation.hierarchy'
+      structure: 'level1.level2.level3.level4'
+      maxDomains: 3
+      maxDepth: 4
+      nonOverlapping: true
       examples: 
-        - ['cursorRules', 'ruleManagement', 'systemManagement']
-        - ['development', 'session', 'execution']
-        - ['codebase', 'frontend', 'components']
-        - ['project', 'workflow', 'optimization']
+        - 'rules.management.system'
+        - 'development.session.execution'
+        - 'codebase.frontend.components'
+        - 'workflow.optimization.llm'
+        - 'architecture.component.modular'
+        - 'syntax.definition.specification'
       value: "Enables precise rule discovery through hierarchical navigation and prevents scope conflicts"
       hierarchy:
-        root: "Top-level domain categories (cursorRules, development, codebase, project)"
-        intermediate: "Mid-level specializations (ruleManagement, session, frontend, workflow)"
-        specific: "Precise application contexts (systemManagement, execution, components, optimization)"
+        level1: "Primary domain category (rules, development, codebase, workflow, architecture, syntax)"
+        level2: "Domain specialization (management, session, frontend, optimization, component, definition)"
+        level3: "Specific context (system, execution, components, llm, modular, specification)"
+        level4: "Fine-grained specification (optional fourth level)"
       rules:
-        exactlyOneDomain: "Each rule belongs to exactly one specific domain (the most specific in its hierarchy)"
-        completeHierarchy: "Each rule must list complete hierarchical path from root to specific domain"
-        noSkippingLevels: "Cannot skip intermediate levels in domain hierarchy"
+        maxThreeDomains: "Each rule can specify maximum 3 domains"
+        maxFourLevels: "Each domain can have maximum 4 hierarchical levels"
+        nonOverlappingPaths: "Domain paths must not overlap with each other"
+        dotNotation: "Use dot notation format (level1.level2.level3.level4)"
         consistentNaming: "Domain names must follow camelCase convention"
-        
-    tags:  
-      purpose: "Define WHAT functionality rules address - the functional categories and problem types rules solve"
-      definition: "Tags describe the functional aspects, problem categories, and solution types that rules address"
-      format: 'arrayOfCamelCaseStrings'
-      examples: ['ruleManagement', 'systemArchitecture', 'domainOrganization', 'templateGeneration', 'sessionManagement', 'workflowOptimization']
-      value: "Enables functional rule discovery and cross-domain reuse through problem-type categorization"
-      functionalTypes:
-        problemCategories: "Types of problems rule solves (validation, integration, formatting, workflow, management)"
-        solutionCategories: "Types of solutions rule provides (patterns, templates, standards, methodologies, frameworks)"
-        featureCategories: "Feature areas rule addresses (authentication, navigation, data-handling, ui-components, rule-systems)"
+      
+      domainSpecification:
+        purpose: "Complete domain organization rules and constraints for cursor rule system"
+        organizationPrinciples:
+          conceptualBoundaries: "Domains represent distinct conceptual areas or subject matter boundaries"
+          hierarchicalStructure: "Use hierarchical dot notation to express specialization relationships"
+          nonOverlappingScope: "Each domain path must represent unique scope without overlapping with others"
+          preciseTargeting: "Domain paths enable precise rule targeting and discovery"
+        constraints:
+          maximumDomains: "Each document can specify maximum 3 domains"
+          maximumDepth: "Each domain can have maximum 4 levels (e.g., level1.level2.level3.level4)"
+          noOverlapping: "Domain paths must not overlap in their hierarchical structure"
+          camelCaseNaming: "All domain names must follow camelCase convention"
+        validationRules:
+          - "Verify each domain path has valid hierarchical structure"
+          - "Ensure no domain path is a subset or superset of another"
+          - "Confirm consistent camelCase naming throughout hierarchy"
+          - "Validate maximum depth and count constraints"
         
     metadata:
-      required: ['name', 'goal', 'domain', 'apply', 'version', 'purpose', 'tags', 'domains']
-      domainField: "Single string representing the most specific domain in hierarchy"
-      domainsField: "Array containing complete hierarchical path from general to specific"
+      required: ['name', 'goal', 'domain', 'apply', 'version', 'purpose', 'domains']
+      domainField: "Single string representing the primary domain in dot notation"
+      domainsField: "Array containing up to 3 non-overlapping domains in dot notation format"
       indexExclusions: "Version field MUST NOT be included in rule index - only in individual rule files"
       
     hierarchicalOrganization:
       purpose: "Clear hierarchical structure for domain organization and rule discovery"
       
       domainPath:
-        definition: "Complete path from root domain to specific domain where rule applies"
-        format: "Array of domain strings in hierarchical order from general to specific"
-        validation: "Each element must be valid domain identifier, no gaps in hierarchy allowed"
-                 examples:
-           systemRule: ['cursorRules', 'ruleManagement', 'systemManagement']
-           sessionRule: ['development', 'session', 'execution']
-           componentRule: ['codebase', 'frontend', 'components']
+        definition: "Domain specification in dot notation format with up to 4 hierarchical levels"
+        format: "Dot notation string (level1.level2.level3.level4)"
+        validation: "Each level must be valid domain identifier, consistent camelCase naming"
+        examples:
+          systemRule: 'rules.management.system'
+          sessionRule: 'development.session.execution'
+          componentRule: 'codebase.frontend.components'
+          optimizationRule: 'workflow.optimization.llm'
           
       discoveryStrategy:
         hierarchicalNavigation: "Navigate from general to specific domains to find applicable rules"
-        crossDomainTags: "Use tags to find similar functionality across different domain hierarchies"
+        domainMatching: "Match rules based on domain path hierarchy and specificity"
         inheritanceSearch: "Rules from parent domains may apply to child domains unless overridden"
         preciseTargeting: "Use specific domain path for exact rule targeting"
         
@@ -259,7 +273,7 @@ standards:
     clearScope: "Define distinct, non-overlapping responsibilities"
     noConflicts: "Rule directives cannot contradict each other"
     noDuplicates: "Consolidate similar functionality to eliminate duplication"
-    domainAligned: "Rule must align with declared domains and tags"
+    domainAligned: "Rule must align with declared domains"
     completeMetadata: "All required meta fields must be present and accurate"
     englishOnly: "All content must be written in English"
     patternAligned: "Examples must align with established conventions"
@@ -285,7 +299,7 @@ standards:
     confirmChanges: "MUST request explicit user confirmation for multiple file changes and all deletions"
     singleResponsibility: "MUST solve only one specific problem per directive"
     defineBoundaries: "MUST have well-defined scope and boundaries"
-    completeMeta: "MUST include complete meta section with tags and domains"
+    completeMeta: "MUST include complete meta section with domains"
     maintainIndex: "MUST maintain rule index synchronization"
     excludeVersionsFromIndex: "MUST NEVER include version fields in rule index - versions only exist in individual rule files"
     

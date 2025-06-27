@@ -7,10 +7,8 @@ alwaysApply: true
 $meta:
   name: "LAML Syntax Specification"
   goal: "Define syntax rules and patterns for LAML documents"
-  version: '1.0.0'
+  version: 1.0
   purpose: "Define LAML syntax rules, value types, and assignment strategies"
-  tags: ['syntaxDefinition', 'formatSpecification']
-  domains: ['syntax', 'specification']
   spec: '.cursor/rules/laml2.mdc'
 
 syntax:
@@ -63,9 +61,7 @@ structure:
       structure: 
         name: "Document identifier in camelCase format"
         purpose: "Brief description of document purpose and goals"
-        domains: "Array of domain names that document covers"
-        tags: "Array of descriptive tags for document categorization"
-        version: "Semantic version number (e.g., 1.0.0)"
+        version: "Numeric version (e.g., 1.0, 2.1)"
         spec: "Full path to LAML spec file"
       
       

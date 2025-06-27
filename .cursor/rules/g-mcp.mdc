@@ -1,0 +1,85 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+```yaml
+$meta:
+  name: 'mcpConventions'
+  goal: 'Define project-specific MCP implementation conventions and agreements'
+  domain: 'mcp.project.conventions'
+  apply: 'mcpServerDevelopment'
+  version: 1.0
+  purpose: "Project-specific conventions for MCP server implementation - data formats, naming, error handling agreements"
+  domains: ['mcp.project.conventions', 'api.response.formats', 'error.handling.agreements']
+
+responseConventions:
+  purpose: "Agreed response format patterns specific to this project"
+  
+  standardFormat:
+    wrapper: 'contentArrayAlways'
+    structure: |
+      {
+        "content": [
+          {
+            "type": "text", 
+            "text": "JSON.stringify(actualData, null, 2)"
+          }
+        ]
+      }
+    
+  dataEncoding:
+    method: 'jsonStringifyInTextContent'
+    indentation: 2
+    never: 'directJsonResponse'
+    always: 'stringifiedJsonInTextContent'
+    
+  successResponse:
+    baseFormat: '{ success: true }'
+    extensibility: 'canAddAdditionalFields'
+    principle: 'alwaysIncludeSuccessField'
+    examples:
+      minimal: '{ success: true }'
+      extended: '{ success: true, data: {...}, timestamp: "..." }'
+
+errorConventions:
+  purpose: "Error handling format and naming principles"
+  
+  errorTypeNaming:
+    format: 'UPPER_CASE_WITH_UNDERSCORES'
+    suffix: '_ERROR'
+    pattern: 'CATEGORY_ERROR'
+    examples: ['CONFIG_PARSING_ERROR', 'OPERATION_ERROR', 'VALIDATION_ERROR']
+    
+  errorStructure:
+    success: false
+    errors: 'arrayOfErrorObjects'
+    errorObject:
+      type: 'errorTypeConstant'
+      message: 'descriptiveErrorMessage'
+      
+  errorFlow:
+    configFirst: 'validateConfigurationBeforeOperation'
+    earlyReturn: 'returnErrorImmediatelyOnConfigFailure'
+    accumulated: 'collectOperationErrorsInArray'
+
+toolConventions:
+  purpose: "Tool naming, parameter and description principles"
+  
+  naming:
+    pattern: 'camelCaseVerbs'
+    structure: 'actionTargetFormat'
+    examples: ['loadGlobalRules', 'saveGlobalRules']
+    
+  pathParameters:
+    requirement: 'absolutePathsOnly'
+    principle: 'neverRelativePaths'
+    
+  descriptions:
+    toolDescription: 'functionalPurposeNotImplementation'
+    parameterDescription: 'formatRequirementsAndExpectations'
+    pathDescription: 'specifyAbsolutePathRequirement'
+    avoidImplementation: 'noInternalLogicDetails'
+    examples:
+      good: 'Absolute path to target project directory that contains .cursor/rules'
+      avoid: 'Path that will be used to construct .cursor/rules subdirectory'
