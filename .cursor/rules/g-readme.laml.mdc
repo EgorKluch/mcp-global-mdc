@@ -1,0 +1,52 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+```yaml
+$meta:
+  name: 'readmeConventions'
+  goal: 'createUserFocusedReadmeFiles'
+  domain: 'documentation.readme.standards'
+  apply: 'readmeFiles'
+  version: 1.0
+  purpose: "Define README writing conventions focused on library users, not developers"
+  domains: ['documentation.readme.standards', 'user.experience.focus', 'content.conciseness.rules']
+
+contentPriority:
+  purpose: "Focus on what library users need to know"
+  
+  essential: ['installation', 'basicUsage', 'keyFeatures', 'integration']
+  secondary: ['configuration', 'examples', 'requirements']
+  avoid: ['projectStructure', 'developmentDetails', 'buildProcess', 'internalArchitecture']
+  
+  userFocus: "Write for people who will USE the library, not develop it"
+  principle: "Every section must answer: How does this help the user accomplish their goal?"
+  accuracy: "Verify actual public API before documenting features - only document what library actually provides"
+
+writingStyle:
+  purpose: "Concise, actionable content without fluff"
+  
+  concise: 'Brief, essential information only'
+  actionable: 'Clear steps and examples'
+  scannable: 'Headers and bullet points for quick reading'
+  avoid: ['verboseExplanations', 'obviousStatements', 'technicalJargon', 'projectHistory']
+
+sectionGuidelines:
+  purpose: "What to include and exclude in README sections"
+  
+  include:
+    - 'Quick installation steps'
+    - 'Basic usage examples'  
+    - 'Key features that matter to users'
+    - 'Integration instructions'
+    - 'Minimal configuration needed'
+    
+  exclude:
+    - 'Project folder structure'
+    - 'Development setup instructions'
+    - 'Build system details'
+    - 'Testing framework information'
+    - 'Internal architecture descriptions'
+    
+  test: "If section doesn't directly help user accomplish their task - remove it"

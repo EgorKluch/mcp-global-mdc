@@ -1,0 +1,60 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+$meta:
+  name: 'changelogConventions'
+  goal: 'standardizeChangelogMaintenance'
+  domain: 'development.changelog.standards'
+  apply: 'versionReleases'
+  version: 1.0
+  purpose: "Define changelog maintenance conventions for version releases"
+  domains: ['development.changelog.standards', 'version.management.process', 'release.documentation.rules']
+
+changelogRules:
+  purpose: "Concise change documentation for version releases"
+  
+  format: 'keepAChangelog'
+  location: 'CHANGELOG.md'
+  structure: '## [version]'
+  
+  categories:
+    - 'Added'
+    - 'Changed' 
+    - 'Fixed'
+    - 'Removed'
+    
+  writingStyle:
+    concise: 'Brief essential descriptions only'
+    userFocused: 'What users/developers will notice'
+    priority: 'Focus on API changes and side effects - if none, describe changes very briefly'
+    avoid: ['implementationDetails', 'technicalJargon', 'verboseExplanations']
+
+versionManagement:
+  purpose: "Version update requirements for releases"
+  
+  packageJson: 'Update version field before changelog entry'
+  semanticVersioning: 'Follow semver (major.minor.patch)'
+  workflow: ['updatePackageVersion', 'addChangelogEntry', 'commit', 'tag']
+
+entryFormat:
+  purpose: "Standard format for changelog entries"
+  
+  template: |
+    ## [X.Y.Z]
+    ### Added
+    - New feature description
+    ### Changed
+    - Modified behavior description
+    ### Fixed
+    - Bug fix description
+    ### Removed
+    - Removed feature description
+    
+  example: |
+    ## [1.2.0]
+    ### Added
+    - LAML parser with type detection
+    ### Fixed
+    - Error handling in validation methods

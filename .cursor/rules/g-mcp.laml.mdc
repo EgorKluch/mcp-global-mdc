@@ -9,9 +9,9 @@ $meta:
   goal: 'Define project-specific MCP implementation conventions and agreements'
   domain: 'mcp.project.conventions'
   apply: 'mcpServerDevelopment'
-  version: 1.0
-  purpose: "Project-specific conventions for MCP server implementation - data formats, naming, error handling agreements"
-  domains: ['mcp.project.conventions', 'api.response.formats', 'error.handling.agreements']
+  version: 1.2
+  purpose: "Project-specific conventions for MCP server implementation - data formats, naming, error and warning handling agreements"
+  domains: ['mcp.project.conventions', 'api.response.formats', 'error.handling.agreements', 'api.stability.rules']
 
 responseConventions:
   purpose: "Agreed response format patterns specific to this project"
@@ -63,6 +63,39 @@ errorConventions:
     earlyReturn: 'returnErrorImmediatelyOnConfigFailure'
     accumulated: 'collectOperationErrorsInArray'
 
+warningConventions:
+  purpose: "Warning message format and handling for non-critical LLM notifications"
+  
+  warningTypeNaming:
+    format: 'UPPER_CASE_WITH_UNDERSCORES'
+    suffix: '_WARNING'
+    pattern: 'CATEGORY_WARNING'
+    examples: ['CONFIG_DEPRECATED_WARNING', 'PERFORMANCE_WARNING', 'COMPATIBILITY_WARNING']
+    
+  warningStructure:
+    success: true
+    warnings: 'arrayOfWarningObjects'
+    warningObject:
+      type: 'warningTypeConstant'
+      message: 'descriptiveWarningMessage'
+      severity: 'optional'
+      
+  warningFlow:
+    nonBlocking: 'warningsDoNotPreventOperationContinuation'
+    accumulated: 'collectWarningsInArrayAlongsideResults'
+    informational: 'provideLLMWithContextualInformation'
+    
+  warningVsError:
+    errors: 'criticalIssuesPreventingOperation'
+    warnings: 'nonCriticalInformationalMessagesForLLM'
+    handling: 'errorsStopExecution_warningsContinueExecution'
+    
+  severityLevels:
+    info: 'generalInformationalMessage'
+    low: 'minorIssueOrSuggestion'
+    medium: 'recommendedActionOrImprovement'
+    high: 'importantButNonCriticalIssue'
+
 toolConventions:
   purpose: "Tool naming, parameter and description principles"
   
@@ -83,3 +116,12 @@ toolConventions:
     examples:
       good: 'Absolute path to target project directory that contains .cursor/rules'
       avoid: 'Path that will be used to construct .cursor/rules subdirectory'
+
+apiStability:
+  purpose: "Maintain MCP API stability - no changes without explicit user request"
+  
+  coreRule: "Never modify MCP API (tools, responses, parameters, errors) without explicit user request"
+  scope: ['toolSignatures', 'responseFormats', 'parameterTypes', 'errorSchemas', 'endpoints']
+  acceptable: ['explicitModificationRequests', 'directlyRequestedChanges']
+  forbidden: ['implicitOptimizations', 'proactiveImprovements', 'refactoringSideEffects']
+  compatibility: "Maintain backward compatibility when adding new features"

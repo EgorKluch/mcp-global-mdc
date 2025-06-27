@@ -1,0 +1,122 @@
+---
+description: 
+globs: **/__tests__/**
+alwaysApply: false
+---
+```yaml
+$meta:
+  name: 'unitTestingPractices'
+  purpose: "Global rules for unit testing practices and debugging approaches"
+  version: 1.0
+  goal: 'effectiveTestDebugging'
+  domain: 'testing.unit.debugging'
+  apply: 'allUnitTests'
+  domains: ['testing.unit.debugging', 'development.quality.testing', 'workflow.debugging.console']
+  spec: '.cursor/rules/laml2.mdc'
+
+testing:
+  purpose: "Define effective unit testing practices and debugging strategies"
+  
+  debugging:
+    purpose: "Debugging approaches for unit tests"
+    
+    primaryApproach:
+      rule: "When unit test fails, choose between two approaches based on complexity"
+      options:
+        newTest: "Create more specific test to isolate the issue"
+        consoleLog: "Add console.log statements to understand the failure"
+      decision:
+        useNewTest: "When the failure indicates missing test coverage or edge cases"
+        useConsoleLog: "When existing test should work but fails due to implementation issues"
+        
+    consoleLogging:
+      enabled: true
+      purpose: "Allow console.log statements for test debugging"
+      rationale: "When unit tests fail, console.log can provide immediate insight into test execution flow and variable states"
+      usage: 'temporaryDebugging'
+      
+      guidelines:
+        insertion: "Insert console.log statements directly in test code to understand failure causes"
+        content: "Log relevant variables, execution paths, and intermediate results"
+        persistence: "Do NOT remove console.log statements until ALL errors are completely fixed"
+        placement: "Place logs at critical points: before assertions, in conditional blocks, after API calls"
+        
+      examples:
+        variableInspection: "console.log('Expected:', expected, 'Actual:', actual);"
+        executionFlow: "console.log('Reached checkpoint A');"
+        objectState: "console.log('Document structure:', JSON.stringify(result.document, null, 2));"
+        conditionalDebugging: "if (!result.success) console.log('Parse errors:', result.errors);"
+        typeInspection: "console.log('Type of result:', typeof result, 'Keys:', Object.keys(result));"
+        
+  practices:
+    purpose: "General unit testing best practices and principles"
+    
+    corePhilosophy:
+      testDrivenMindset: "Tests should drive development and catch regressions"
+      failFast: "Tests should fail immediately when something breaks"
+      clearFeedback: "Test failures should provide clear information about what went wrong"
+      isolatedTests: "Each test should be independent and not rely on other tests"
+      
+    testCoverage:
+      happyPath: "Test the expected successful scenarios"
+      edgeCases: "Test boundary conditions and edge cases"
+      errorConditions: "Test all possible error scenarios"
+      dataVariations: "Test with different data types and formats"
+      
+    errorHandling:
+      expectSpecificErrors: "Test for specific error messages and conditions"
+      validateErrorStructure: "Ensure error objects contain expected properties"
+      testBothSuccessAndFailure: "Always test both successful and error scenarios"
+      errorPropagation: "Verify errors are properly caught and handled"
+      
+    assertions:
+      useSpecificMatchers: "Prefer specific matchers over generic ones (toBe vs toEqual)"
+      testCompleteStructure: "Validate entire object structures, not just single properties"
+      checkTypes: "Verify both values and types of returned data"
+      assertAllProperties: "When testing objects, verify all expected properties exist"
+      
+    structure:
+      groupRelatedTests: "Use describe blocks to group related test scenarios"
+      descriptiveNames: "Test names should clearly describe what is being tested"
+      setupTeardown: "Use beforeEach/afterEach for common setup and cleanup"
+      hierarchicalOrganization: "Organize tests in logical hierarchies matching system structure"
+      
+    debugging:
+      iterativeApproach: "Debug one test at a time, fix completely before moving to next"
+      isolateFailures: "Run individual failing tests to focus debugging efforts"
+      understandFirst: "Always understand WHY a test fails before attempting to fix"
+      documentLearnings: "Comment complex test logic and debugging discoveries"
+
+workflow:
+  purpose: "Test execution and debugging workflow"
+  
+  debuggingProcess:
+    identify: "Identify failing test and error message"
+    decide: "Choose approach: create specific test OR add console.log debugging"
+    isolate: "Run single failing test to focus debugging"
+    instrument: "Add console.log statements at key points OR create targeted test"
+    analyze: "Review console output or test results to understand failure cause"
+    fix: "Implement fix based on debugging insights"
+    verify: "Run full test suite to ensure fix doesn't break other tests"
+    cleanup: "Remove debugging console.log statements ONLY after ALL errors are fixed"
+    
+  debuggingStrategies:
+    consoleLogApproach:
+      when: "Existing test should work but implementation has bugs"
+      steps: ["Add console.log at failure points", "Run test to see output", "Analyze data flow", "Fix implementation", "Keep logs until fully working"]
+      
+    newTestApproach:
+      when: "Need to isolate specific functionality or test edge cases"
+      steps: ["Create focused test for specific scenario", "Make test more granular", "Test individual components", "Build up to full integration"]
+      
+  testExecution:
+    commands:
+      runSingleTest: "npm test -- --testNamePattern='specific test name'"
+      runWithOutput: "npm test -- --verbose"
+      watchMode: "npm test -- --watch"
+      debugMode: "npm test -- --verbose --no-cache"
+      
+  maintenanceRules:
+    consoleLogPolicy: "Console.log statements stay in code until ALL related errors are completely resolved"
+    incrementalFixes: "Fix one test completely before moving to next failing test"
+    regressionPrevention: "Always run full test suite after each fix to catch regressions"

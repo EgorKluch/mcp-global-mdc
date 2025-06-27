@@ -1,15 +1,15 @@
 ---
 description: 
 globs: 
-alwaysApply: true
+alwaysApply: false
 ---
 ```yaml
 $meta:
   name: "LAML Syntax Specification"
-  goal: "Define syntax rules and patterns for LAML documents"
   version: 1.0
   purpose: "Define LAML syntax rules, value types, and assignment strategies"
-  spec: '.cursor/rules/laml2.mdc'
+  spec: '.cursor/rules/g-laml.mdc'
+  domains: ['syntax.definition.specification', 'rules.management.system', 'workflow.validation.laml']
 
 syntax:
   purpose: "Define LAML syntax rules and patterns"
@@ -191,7 +191,7 @@ scenarios:
   documentCreation:
     triggers: ['Create LAML document', 'New LAML file', 'Initialize LAML']
     description: 'User requests creation of new LAML-compliant documentation'
-    workflow: *scenarios.operationalFramework.standardWorkflow
+    workflow: *scenarios.standardWorkflow
     specialization:
       analyze: 'Identify document purpose, domain structure, and required content'
       validate: 'Ensure $meta section completeness and specification path presence'
@@ -204,7 +204,7 @@ scenarios:
   documentUpdate:
     triggers: ['Update LAML', 'Modify LAML document', 'Enhance LAML']
     description: 'User requests modification of existing LAML document'
-    workflow: *scenarios.operationalFramework.standardWorkflow
+    workflow: *scenarios.standardWorkflow
     specialization:
       analyze: 'Assess current document state and identify modification scope'
       validate: 'Check impact of proposed changes on LAML compliance'
@@ -243,7 +243,7 @@ scenarios:
   complianceVerification:
     triggers: ['Verify LAML', 'Check compliance', 'Validate LAML']
     description: 'User requests validation of LAML document compliance'
-    workflow: *scenarios.operationalFramework.standardWorkflow
+    workflow: *scenarios.standardWorkflow
     specialization:
       analyze: 'Examine document structure against LAML requirements'
       validate: 'Systematically check all mandatory conditions and syntax rules'

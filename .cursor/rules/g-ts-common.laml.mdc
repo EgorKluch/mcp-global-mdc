@@ -1,0 +1,69 @@
+---
+description: 
+globs: *.ts,*.tsx
+alwaysApply: false
+---
+$meta:
+  name: 'typescriptConventions'
+  goal: 'establishTypescriptBestPractices'
+  domain: 'development.typescript.standards'
+  apply: 'typescriptFiles'
+  version: 1.0
+  purpose: "Define TypeScript coding conventions and best practices for type safety and maintainability"
+  domains: ['development.typescript.standards', 'codebase.types.definition', 'architecture.type.safety']
+
+types:
+  purpose: "TypeScript type definition best practices"
+  
+  enumOverUnion:
+    rule: "Prefer enums over union types for better maintainability and IDE support"
+    rationale: "Enums provide better refactoring support, autocomplete, and value grouping for fixed sets of constants"
+    examples:
+      preferred: "enum Status { Pending = 'pending', Success = 'success', Error = 'error' }"
+      avoid: "type Status = 'pending' | 'success' | 'error'"
+    exceptions: "Use union types when you need type-only definitions or when values come from external sources"
+      
+  discriminatedUnions:
+    rule: "Split complex types into discriminated unions for better type narrowing"
+    description: "Break down types with optional properties into explicit success/failure states"
+    example:
+      bad: |
+        type Response = {
+          success: boolean;
+          error?: string;
+        }
+      good: |
+        type SuccessResponse = {
+          success: true;
+        }
+        
+        type FailedResponse = {
+          success: false;
+          error: string;
+        }
+        
+        type Response = SuccessResponse | FailedResponse
+      benefits: ['Better type narrowing', 'Eliminates invalid states', 'Improved IntelliSense']
+      
+  typeOverInterface:
+    rule: "Prefer 'type' over 'interface' for type definitions"
+    rationale: "Types are more flexible and provide better composition capabilities"
+    examples:
+      preferred: "type User = { id: string; name: string; }"
+      avoid: "interface User { id: string; name: string; }"
+    exceptions: "Use interfaces only when declaration merging is specifically needed"
+
+practices:
+  purpose: "General TypeScript development practices"
+  
+  typeLocation:
+    rule: "Place types in separate files next to the entities they relate to"
+    structure: "Create dedicated .types.ts files alongside implementation files"
+    examples:
+      preferred: "userService.ts + userService.types.ts"
+      avoid: "Centralized types/ directory for domain-specific types"
+    exceptions: "Shared utility types can be centralized"
+  
+  typeComposition:
+    principle: "Build complex types through composition of smaller, focused types"
+    benefits: ['Reusability', 'Maintainability', 'Clear separation of concerns']

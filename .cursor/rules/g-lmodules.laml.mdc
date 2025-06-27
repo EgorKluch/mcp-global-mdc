@@ -1,0 +1,62 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+$meta:
+  name: 'localModules'
+  goal: 'modularCodeOrganization'
+  domain: 'codebase.architecture.modular'
+  apply: 'codebaseStructure'
+  version: 1.0
+  purpose: "Define local module concept for organizing code into self-contained, minimally dependent functional units"
+  domains: ['codebase.architecture.modular', 'development.patterns.organization', 'architecture.component.api']
+
+localModules:
+  purpose: "Organize code into self-contained functional units with minimal dependencies and clear API boundaries"
+  
+  definition:
+    localModule: "Self-contained code unit implementing specific functionality with minimal dependencies"
+    characteristics:
+      - "Single functional area or feature"
+      - "Minimal dependencies on other local modules"
+      - "Clear API interface through index file"
+      - "Complete unit: implementation, types, tests, submodules"
+      - "Independent understanding and maintenance"
+  
+  structure:
+    organization: "Dedicated directory per module containing all related code"
+    apiInterface: "Export public API through index file (index.js/index.ts)"
+    testing: "Tests reside within module directory"
+    submodules: "Nested directories allowed for complex functionality"
+  
+  criteria:
+    - "Clear functional boundaries that can be isolated"
+    - "Multiple related files or complex functionality"
+    - "Code reusability or independent development needs"
+    
+  principles:
+    - "Minimal dependencies on other local modules"
+    - "Single responsibility per module"
+    - "Well-defined interfaces and boundaries"
+    - "Self-contained and independently testable"
+
+moduleRules:
+  purpose: "Define module documentation rules using cursor rules system"
+  
+  creation:
+    trigger: "When user requests 'create module rule'"
+    location: "src/<moduleName>/.cursor/rules/<moduleName>.mdc"
+    directory: "Create .cursor/rules directory within module if not exists"
+    approach: "Use g-rules.mdc methodology for rule creation"
+    
+  content:
+    focus: "Module responsibility, external API, and operational behavior"
+    exclude: "Technical implementation details"
+    include:
+      - "Module purpose and responsibility"
+      - "Public API interface and methods"
+      - "Module behavior and workflows"
+      - "Dependencies and relationships"
+    
+  format: "Concise LAML-compliant documentation following g-rules standards"
