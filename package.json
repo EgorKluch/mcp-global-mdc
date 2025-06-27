@@ -1,0 +1,32 @@
+{
+  "name": "mcp-global-rules-server",
+  "version": "1.0.0",
+  "description": "MCP server for managing global .cursor rules",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "tsc --watch",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test-dev": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll",
+    "build": "tsc"
+  },
+  "type": "module",
+  "keywords": [
+    "mcp",
+    "server",
+    "global-rules",
+    "cursor"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.27.7",
+    "@babel/preset-env": "^7.27.2",
+    "@types/jest": "^30.0.0",
+    "babel-jest": "^30.0.2",
+    "jest": "^30.0.3"
+  }
+}
