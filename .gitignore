@@ -44,3 +44,5 @@ pids/
 *.pid
 *.seed
 *.pid.lock 
+
+!.cursor/
