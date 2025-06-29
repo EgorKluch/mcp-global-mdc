@@ -67,3 +67,11 @@ practices:
   typeComposition:
     principle: "Build complex types through composition of smaller, focused types"
     benefits: ['Reusability', 'Maintainability', 'Clear separation of concerns']
+  
+  noNonNullAssertion:
+    rule: "NEVER use non-null assertion operator (!)"
+    rationale: "Non-null assertion bypasses TypeScript's type safety and can lead to runtime errors"
+    examples:
+      avoid: "const value = someValue!.property"
+      preferred: "if (someValue) { const value = someValue.property }"
+    alternatives: ['Proper null checks', 'Optional chaining', 'Type guards']

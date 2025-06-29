@@ -1,6 +1,6 @@
 ---
 description: 
-globs: **/__tests__/**
+globs: **/__tests__/**,*.test.ts
 alwaysApply: false
 ---
 ```yaml

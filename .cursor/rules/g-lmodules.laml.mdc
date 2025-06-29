@@ -3,6 +3,7 @@ description:
 globs: 
 alwaysApply: true
 ---
+```yaml
 $meta:
   name: 'localModules'
   goal: 'modularCodeOrganization'
@@ -40,23 +41,3 @@ localModules:
     - "Single responsibility per module"
     - "Well-defined interfaces and boundaries"
     - "Self-contained and independently testable"
-
-moduleRules:
-  purpose: "Define module documentation rules using cursor rules system"
-  
-  creation:
-    trigger: "When user requests 'create module rule'"
-    location: "src/<moduleName>/.cursor/rules/<moduleName>.mdc"
-    directory: "Create .cursor/rules directory within module if not exists"
-    approach: "Use g-rules.mdc methodology for rule creation"
-    
-  content:
-    focus: "Module responsibility, external API, and operational behavior"
-    exclude: "Technical implementation details"
-    include:
-      - "Module purpose and responsibility"
-      - "Public API interface and methods"
-      - "Module behavior and workflows"
-      - "Dependencies and relationships"
-    
-  format: "Concise LAML-compliant documentation following g-rules standards"

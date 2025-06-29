@@ -41,14 +41,29 @@ codeChanges:
       - "Confirm changes align strictly with user request scope"
     principle: "Make only the changes explicitly requested by the user, nothing more"
     
-  changeScope:
-    rule: "Limit modifications to exactly what user requested"
-    description: "Avoid adding functionality, optimizations, or improvements that weren't specifically asked for"
-    approach:
-      - "Analyze user request to understand exact scope"
-      - "Identify minimum necessary changes to fulfill request"
-      - "Verify each change directly supports the stated goal"
-      - "Ask for clarification if scope is ambiguous"
+  scopeCompliance:
+    coreRule: "NEVER add functionality beyond exactly what user explicitly requested"
+    criticalPrinciple: "LLM MUST NOT make product decisions independently"
+    
+    forbidden:
+      - "Auto-completing method families (CRUD operations)"
+      - "Adding methods based on common patterns" 
+      - "Anticipating future needs"
+      - "Adding convenience methods without request"
+      - "Proactive optimizations not requested"
+      
+    allowed:
+      - "Implementing exactly what was requested"
+      - "Private methods needed for requested functionality"
+      - "Dependencies required for requested feature"
+      
+    validation:
+      question: "What EXACTLY did user request?"
+      redFlag: "I think they'll need this too / This would be convenient"
+      
+    communication:
+      clarify: "Ask for clarification rather than guess user intent"
+      suggest: "Offer additional features AFTER implementing exact request"
 
   functionPurity:
     rule: "Functions should be pure functions unless explicitly specified otherwise"
@@ -80,3 +95,13 @@ codeChanges:
     description: "Avoid refactoring existing working code to match current patterns unless specifically requested"
     approach: "Focus on new code following patterns rather than updating legacy code"
     exception: "Only update existing code style when user explicitly asks for refactoring or style improvements"
+
+codeOrganization:
+  purpose: "Define standards for organizing code structure and components"
+  
+  utilities:
+    rule: "Each utility should be created in its own folder"
+    description: "Utilities must be organized into separate folders for better maintainability and clarity"
+    structure: "Each utility should have its own dedicated folder containing all related files"
+    rationale: "Improves code organization, makes utilities easier to locate, and enables better dependency management"
+    

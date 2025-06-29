@@ -1,7 +1,7 @@
 ---
 description: 
 globs: 
-alwaysApply: true
+alwaysApply: false
 ---
 ```yaml
 $meta:
@@ -11,42 +11,57 @@ $meta:
   apply: 'cursorRulesDirectory'
   version: 11.0
   contextLimitations: 'cursorRulesOnly'
-  purpose: "LLM-optimized scenario-based methodology for cursor rule management leveraging LLM judgment and trust-based design"
-  mustContain: ['principles', 'rules', 'workflows', 'scenarios', 'standards']
-  domains: ['rules.management.system', 'workflow.optimization.llm', 'architecture.component.modular']
+  purpose: "LLM-optimized scenario-based methodology for cursor rule management
+    leveraging LLM judgment and trust-based design"
+  mustContain:
+    - 'principles'
+    - 'rules'
+    - 'workflows'
+    - 'scenarios'
+    - 'standards'
+  domains:
+    - 'rules.management.system'
+    - 'workflow.optimization.llm'
+    - 'architecture.component.modular'
   keyPrinciple: 'llmTrustAndScenarioEfficiency'
-  specificationPath: '.cursor/rules/laml2.mdc'
+  specificationPath: '.cursor/rules/g-laml.mdc'
+  spec: '.cursor/rules/g-laml.mdc'
 
-laml2:
-  path: ".cursor/rules/laml2.mdc"
-  purpose: "Base LAML specification for principles, scenarios, and design philosophy"
-  usage: "Foundation for all rule management operations"
+$refs:
+  laml:
+    path: '.cursor/rules/g-laml.mdc'
+    description: "LAML syntax specification and design principles"
 
 # === BASE SPECIFICATIONS ===
 baseSpecifications:
-  lamlPrinciples: *laml2.principles
-  lamlScenarios: *laml2.scenarios
-  note: "This document extends and specializes LAML principles for cursor rule management"
-  applicability: "All LAML design philosophy and base scenarios apply to rule management operations"
+  lamlPrinciples: "*$refs.laml.principles"
+  lamlScenarios: "*$refs.laml.scenarios"
+  note: "This document extends and specializes LAML principles for cursor rule
+    management"
+  applicability: "All LAML design philosophy and base scenarios apply to rule
+    management operations"
 
 # === PRINCIPLES ===
 principles:
   purpose: "Core beliefs and philosophical foundations specific to rule management"
-  baseCompliance: *laml2.principles.designPhilosophy
-  
+  baseCompliance: "*$refs.laml.principles.designPhilosophy"
+
   trust:
     belief: "LLM knows how to structure scenarios for optimal self-execution"
-    rationale: "LLM inherently understands scenario patterns that facilitate effective rule management"
+    rationale: "LLM inherently understands scenario patterns that facilitate
+      effective rule management"
     application: "Trust LLM judgment on scenario format, structure, and execution approach"
     benefits:
       - "Natural scenario definition that aligns with LLM reasoning patterns"
       - "Reduced cognitive overhead in scenario specification"
       - "Self-optimizing scenario execution"
-    
+
   efficiency:
     belief: "Avoid creating redundant scenarios - focus on essential patterns"
-    rationale: "Each scenario should demonstrate unique decision-making patterns for LLM learning"
-    application: "Create minimal set of scenarios that cover fundamental rule management approaches"
+    rationale: "Each scenario should demonstrate unique decision-making patterns for
+      LLM learning"
+    application: "Create minimal set of scenarios that cover fundamental rule
+      management approaches"
     benefits:
       - "Clear demonstration of core principles without overengineering"
       - "LLM can extrapolate patterns to handle edge cases"
@@ -59,54 +74,60 @@ principles:
 # === RULES ===
 rules:
   purpose: "What we build and how we organize it"
-  
+
   components:
     collection:
       definition: "Complete collection of all rule files within cursor environment"
       role: "Foundation of entire rule management system"
-      
+
     index:
       path: '.cursor/rules/rule-index.mdc'
       definition: "Central registry for rule discovery and domain organization"
       usage: "Required for all rule management operations"
       role: "Primary coordination point for system-wide operations"
       structure: 'hierarchicalDomainTree'
-      contains: ['domainHierarchy', 'ruleRegistry']
-      maintainAfter: ['anyRuleChange', 'domainReorganization']
-      
+      contains: [ 'domainHierarchy', 'ruleRegistry' ]
+      maintainAfter: [ 'anyRuleChange', 'domainReorganization' ]
+
     file:
       definition: "Physical file containing one or more related rule directives"
       format: 'markdownWithYamlCodeBlock'
       extension: '.mdc'
       location: '.cursor/rules/'
-      
+
     directive:
       definition: "Single rule specification solving one specific problem"
       scope: 'targetedFunctionality'
       structure: 'yamlDefinition'
       responsibility: 'singlePurposeSolution'
-    
+
   organization:
     domains:
-      purpose: "Define domain specification using dot notation - WHERE and WHAT rules apply"
-      definition: "Each rule specifies up to 3 non-overlapping domains in dot notation format with maximum 4 levels deep"
+      purpose: "Define domain specification using dot notation - WHERE and WHAT rules
+        apply"
+      definition: "Each rule specifies up to 3 non-overlapping domains in dot notation
+        format with maximum 4 levels deep"
       format: 'dot.notation.hierarchy'
       structure: 'level1.level2.level3.level4'
       maxDomains: 3
       maxDepth: 4
       nonOverlapping: true
-      examples: 
+      examples:
         - 'rules.management.system'
         - 'development.session.execution'
         - 'codebase.frontend.components'
         - 'workflow.optimization.llm'
         - 'architecture.component.modular'
         - 'syntax.definition.specification'
-      value: "Enables precise rule discovery through hierarchical navigation and prevents scope conflicts"
+      value: "Enables precise rule discovery through hierarchical navigation and
+        prevents scope conflicts"
       hierarchy:
-        level1: "Primary domain category (rules, development, codebase, workflow, architecture, syntax)"
-        level2: "Domain specialization (management, session, frontend, optimization, component, definition)"
-        level3: "Specific context (system, execution, components, llm, modular, specification)"
+        level1: "Primary domain category (rules, development, codebase, workflow,
+          architecture, syntax)"
+        level2: "Domain specialization (management, session, frontend, optimization,
+          component, definition)"
+        level3: "Specific context (system, execution, components, llm, modular,
+          specification)"
         level4: "Fine-grained specification (optional fourth level)"
       rules:
         maxThreeDomains: "Each rule can specify maximum 3 domains"
@@ -114,17 +135,22 @@ rules:
         nonOverlappingPaths: "Domain paths must not overlap with each other"
         dotNotation: "Use dot notation format (level1.level2.level3.level4)"
         consistentNaming: "Domain names must follow camelCase convention"
-      
+
       domainSpecification:
-        purpose: "Complete domain organization rules and constraints for cursor rule system"
+        purpose: "Complete domain organization rules and constraints for cursor rule
+          system"
         organizationPrinciples:
-          conceptualBoundaries: "Domains represent distinct conceptual areas or subject matter boundaries"
-          hierarchicalStructure: "Use hierarchical dot notation to express specialization relationships"
-          nonOverlappingScope: "Each domain path must represent unique scope without overlapping with others"
+          conceptualBoundaries: "Domains represent distinct conceptual areas or subject
+            matter boundaries"
+          hierarchicalStructure: "Use hierarchical dot notation to express specialization
+            relationships"
+          nonOverlappingScope: "Each domain path must represent unique scope without
+            overlapping with others"
           preciseTargeting: "Domain paths enable precise rule targeting and discovery"
         constraints:
           maximumDomains: "Each document can specify maximum 3 domains"
-          maximumDepth: "Each domain can have maximum 4 levels (e.g., level1.level2.level3.level4)"
+          maximumDepth: "Each domain can have maximum 4 levels (e.g.,
+            level1.level2.level3.level4)"
           noOverlapping: "Domain paths must not overlap in their hierarchical structure"
           camelCaseNaming: "All domain names must follow camelCase convention"
         validationRules:
@@ -132,41 +158,59 @@ rules:
           - "Ensure no domain path is a subset or superset of another"
           - "Confirm consistent camelCase naming throughout hierarchy"
           - "Validate maximum depth and count constraints"
-        
+
     metadata:
-      required: ['name', 'goal', 'domain', 'apply', 'version', 'purpose', 'domains']
+      required:
+        - 'name'
+        - 'goal'
+        - 'domain'
+        - 'apply'
+        - 'version'
+        - 'purpose'
+        - 'domains'
       domainField: "Single string representing the primary domain in dot notation"
       domainsField: "Array containing up to 3 non-overlapping domains in dot notation format"
-      indexExclusions: "Version field MUST NOT be included in rule index - only in individual rule files"
-      
+      indexExclusions: "Version field MUST NOT be included in rule index - only in
+        individual rule files"
+
     hierarchicalOrganization:
       purpose: "Clear hierarchical structure for domain organization and rule discovery"
-      
+
       domainPath:
-        definition: "Domain specification in dot notation format with up to 4 hierarchical levels"
+        definition: "Domain specification in dot notation format with up to 4
+          hierarchical levels"
         format: "Dot notation string (level1.level2.level3.level4)"
-        validation: "Each level must be valid domain identifier, consistent camelCase naming"
+        validation: "Each level must be valid domain identifier, consistent camelCase
+          naming"
         examples:
           systemRule: 'rules.management.system'
           sessionRule: 'development.session.execution'
           componentRule: 'codebase.frontend.components'
           optimizationRule: 'workflow.optimization.llm'
-          
+
       discoveryStrategy:
         hierarchicalNavigation: "Navigate from general to specific domains to find applicable rules"
         domainMatching: "Match rules based on domain path hierarchy and specificity"
-        inheritanceSearch: "Rules from parent domains may apply to child domains unless overridden"
+        inheritanceSearch: "Rules from parent domains may apply to child domains unless
+          overridden"
         preciseTargeting: "Use specific domain path for exact rule targeting"
-        
+
   constraints:
-    baseCompliance: *laml2.principles.designPhilosophy
-    ruleSpecific: ['noConflicts', 'noDuplication', 'coherentStructure', 'singleResponsibility', 'clearBoundaries', 'domainAlignment', 'hierarchicalConsistency']
+    baseCompliance: "*$refs.laml.principles.designPhilosophy"
+    ruleSpecific:
+      - 'noConflicts'
+      - 'noDuplication'
+      - 'coherentStructure'
+      - 'singleResponsibility'
+      - 'clearBoundaries'
+      - 'domainAlignment'
+      - 'hierarchicalConsistency'
 
 # === WORKFLOWS ===
 workflows:
   purpose: "How we work and execute operations"
-  baseWorkflow: *laml2.scenarios.standardWorkflow
-  
+  baseWorkflow: "*$refs.laml.scenarios.standardWorkflow"
+
   ruleManagementWorkflow:
     analyze: "Assess current state and identify requirements or gaps"
     consult: "Check rule index for existing solutions and domain organization"
@@ -176,82 +220,114 @@ workflows:
     implement: "Execute changes while maintaining quality standards"
     update: "Maintain rule index synchronization"
     verify: "Confirm compliance and system coherence"
-    
+
   approach:
     llmDriven: "LLM determines optimal approach within workflow structure"
     adaptive: "Workflows provide structure while allowing contextual adaptation"
     outcomeFocused: "Focus on achieving scenario outcomes through structured process"
     qualityMaintained: "Ensure system integrity throughout execution"
-    
+
   validation:
     uniqueness: "Ensure no duplication of existing functionality"
     compatibility: "Check system-wide rule compatibility"
     compliance: "Validate against quality standards"
     indexConsistency: "Maintain rule index accuracy and completeness"
-    smartConfirmation: "Request confirmation for multiple file changes or deletions, proceed without confirmation for single file operations"
-    
+    smartConfirmation: "Request confirmation for multiple file changes or deletions,
+      proceed without confirmation for single file operations"
+
   resources:
-    core: [*rules.components.index.path, 'qualityStandards']
-    contextual: ['targetFile', 'allRuleFiles', 'codebase']
-    analytical: ['domainAnalysis', 'conflictAnalysis', 'systemAnalysis']
+    core:
+      - "*rules.components.index.path"
+      - 'qualityStandards'
+    contextual: [ 'targetFile', 'allRuleFiles', 'codebase' ]
+    analytical:
+      - 'domainAnalysis'
+      - 'conflictAnalysis'
+      - 'systemAnalysis'
 
 # === SCENARIOS ===
 scenarios:
   purpose: "Concrete situations and how we handle them - extends base LAML scenarios"
-  baseScenarios: *laml2.scenarios
+  baseScenarios: "*$refs.laml.scenarios"
   specializationNote: "Rule management scenarios extend and complement base LAML scenarios"
-  
+
   structure:
-    baseElements: *laml2.scenarios.documentCreation.workflow
+    baseElements: "*$refs.laml.scenarios.standardWorkflow"
     ruleSpecific:
       triggers: "Keywords or conditions that activate scenario"
-      description: "Brief characterization of scenario purpose"  
+      description: "Brief characterization of scenario purpose"
       workflow: "Execution approach using rule management workflow"
       resources: "Required data and tools"
       outcomes: "Expected results"
-    
+
   scopeGuidelines:
-    essential: "Focus on core scenarios demonstrating fundamental rule management patterns"
+    essential: "Focus on core scenarios demonstrating fundamental rule management
+      patterns"
     limitedSet: "Provide minimal essential scenarios - avoid comprehensive coverage"
-    principlesFocus: "Demonstrate principles and approaches rather than exhaustive case coverage"
+    principlesFocus: "Demonstrate principles and approaches rather than exhaustive
+      case coverage"
     llmExtrapolation: "LLM can extrapolate from basic patterns to handle variations"
-    
+
   avoidanceRules:
     noRedundantScenarios: "Do not create overlapping or duplicate scenario patterns"
     noExhaustiveCoverage: "Do not attempt to cover all possible scenarios"
-    noOverSpecification: "Avoid overly detailed procedural requirements while maintaining workflow clarity"
+    noOverSpecification: "Avoid overly detailed procedural requirements while
+      maintaining workflow clarity"
     noWorkflowAmbiguity: "Do not leave workflow execution undefined"
 
   ruleManagementPatterns:
     workingWithRules:
-      triggers: ['Add rule', 'Create rule', 'Update rule', 'Modify rule', 'I need rule']
+      triggers:
+        - 'Add rule'
+        - 'Create rule'
+        - 'Update rule'
+        - 'Modify rule'
+        - 'I need rule'
       description: "User requests creating or modifying individual rules"
-      workflow: *workflows.ruleManagementWorkflow
+      workflow: "*workflows.ruleManagementWorkflow"
       specialization:
         analyze: "Parse instruction to identify domain, scope, and rule type"
         design: "Determine target file or need for new file creation"
-      resources: [*workflows.resources.core, 'targetFile']
-      outcomes: ['newRule', 'updatedRule', 'updatedIndex']
-      indexRole: *rules.components.index.role
-      
+      resources: [ "*workflows.resources.core", 'targetFile' ]
+      outcomes: [ 'newRule', 'updatedRule', 'updatedIndex' ]
+      indexRole: "*rules.components.index.role"
+
     maintaining:
-      triggers: ['Optimize rules', 'Fix conflicts', 'Clean up rules', 'Consolidate rules', 'Initialize index']
-      description: "User requests system-wide maintenance, optimization, or administrative operations"
-      workflow: *workflows.ruleManagementWorkflow
+      triggers:
+        - 'Optimize rules'
+        - 'Fix conflicts'
+        - 'Clean up rules'
+        - 'Consolidate rules'
+        - 'Initialize index'
+      description: "User requests system-wide maintenance, optimization, or
+        administrative operations"
+      workflow: "*workflows.ruleManagementWorkflow"
       specialization:
-        analyze: "Scan system for issues, duplications, conflicts, or missing components"
+        analyze: "Scan system for issues, duplications, conflicts, or missing
+          components"
         validate: "Check impact of proposed changes on system integrity"
         design: "Plan comprehensive improvements or administrative setup"
         implement: "Apply changes maintaining system coherence"
         verify: "Validate system health and performance"
-      resources: [*workflows.resources.core, 'allRuleFiles', 'systemAnalysis']
-      outcomes: ['optimizedSystem', 'resolvedConflicts', 'systemIndex']
-      indexRole: *rules.components.index.role
-      
+      resources:
+        - "*workflows.resources.core"
+        - 'allRuleFiles'
+        - 'systemAnalysis'
+      outcomes:
+        - 'optimizedSystem'
+        - 'resolvedConflicts'
+        - 'systemIndex'
+      indexRole: "*rules.components.index.role"
+
     batchWork:
-      triggers: ['Apply changes from discussion', 'Implement multiple rules', 'Generate rules from code', 'Bulk update']
-      description: "User requests processing multiple rules or analysis-based rule generation"
-      workflow: *workflows.ruleManagementWorkflow
+      triggers:
+        - 'Apply changes from discussion'
+        - 'Implement multiple rules'
+        - 'Generate rules from code'
+        - 'Bulk update'
+      description: "User requests processing multiple rules or analysis-based rule
+        generation"
+      workflow: "*workflows.ruleManagementWorkflow"
       specialization:
         analyze: "Extract multiple changes or patterns from context/codebase"
         validate: "Check for conflicts between proposed changes"
@@ -259,15 +335,21 @@ scenarios:
         implement: "Execute all changes maintaining system coherence"
         update: "Maintain rule index synchronization"
         verify: "Validate batch implementation and system integrity"
-      resources: [*workflows.resources.core, 'multipleFiles', 'codebase']
-      outcomes: ['multipleRules', 'extractedPatterns', 'batchUpdate']
-      indexRole: *rules.components.index.role
+      resources:
+        - "*workflows.resources.core"
+        - 'multipleFiles'
+        - 'codebase'
+      outcomes:
+        - 'multipleRules'
+        - 'extractedPatterns'
+        - 'batchUpdate'
+      indexRole: "*rules.components.index.role"
 
 # === STANDARDS ===
 standards:
   purpose: "What we must follow and what we can do"
-  baseCompliance: *laml2.principles.designPhilosophy
-  
+  baseCompliance: "*$refs.laml.principles.designPhilosophy"
+
   ruleQuality:
     singlePurpose: "Each rule directive solves exactly one specific problem"
     clearScope: "Define distinct, non-overlapping responsibilities"
@@ -279,30 +361,32 @@ standards:
     patternAligned: "Examples must align with established conventions"
     codebaseValidated: "Validate against existing codebase patterns"
     avoidDeprecated: "Avoid outdated or deprecated practices"
-    
+
   scenarioQuality:
     clearPurpose: "Each scenario must have clear, distinct purpose"
     preciseTriggers: "Scenario triggers must be unambiguous"
     adequateResources: "Scenarios must specify sufficient resources"
     definedOutcomes: "Expected results must be clearly defined"
-    
+
   processRequirements:
     detectDuplication: "Systematic identification and elimination of redundancy"
     optimizeContext: "Apply cross-referencing to maximize context efficiency"
     userConfirmation: "CRITICAL: Require explicit user confirmation for ALL rule modifications"
-    maintainIndex: *rules.components.index.maintainAfter
-    
+    maintainIndex: "*rules.components.index.maintainAfter"
+
   mustDo:
     followQuality: "MUST follow all quality standards"
     noDuplicateFunctionality: "MUST NOT duplicate existing functionality"
     noContradictions: "MUST NOT create contradicting elements"
-    confirmChanges: "MUST request explicit user confirmation for multiple file changes and all deletions"
+    confirmChanges: "MUST request explicit user confirmation for multiple file
+      changes and all deletions"
     singleResponsibility: "MUST solve only one specific problem per directive"
     defineBoundaries: "MUST have well-defined scope and boundaries"
     completeMeta: "MUST include complete meta section with domains"
     maintainIndex: "MUST maintain rule index synchronization"
-    excludeVersionsFromIndex: "MUST NEVER include version fields in rule index - versions only exist in individual rule files"
-    
+    excludeVersionsFromIndex: "MUST NEVER include version fields in rule index -
+      versions only exist in individual rule files"
+
   canDo:
     chooseFormat: "MAY choose any format optimal for scenario description and execution"
     structureWorkflows: "MAY structure workflows based on scenario requirements"
@@ -311,25 +395,29 @@ standards:
     evolveScenarios: "MAY evolve scenario structure based on learning and experience"
     innovateProcesses: "MAY develop new execution patterns for better efficiency"
     adaptContexts: "MAY adapt scenarios for specific project or domain needs"
-    
+
   confirmationRules:
     multipleFiles: "MUST request explicit user confirmation when modifying multiple files"
     anyDeletion: "MUST ALWAYS request explicit user confirmation for any file deletion"
     singleFileCreation: "MAY proceed without confirmation when creating single new rule file"
     singleFileModification: "MAY proceed without confirmation when modifying single existing file"
-    
+
   optimizationPrinciples:
     contentOverFormat: "MUST prioritize content clarity over format conformity"
     minimalScenarios: "SHOULD minimize number of scenarios while covering essential patterns"
     trustLlm: "SHOULD trust LLM judgment on scenario structure and execution"
     maximizeContext: "SHOULD maximize context efficiency in all operations"
     organizeByDomain: "SHOULD organize rules by domain for optimal discovery"
-    
+
   complianceFramework:
     validationRequired: "All changes must undergo systematic validation"
     principleAdherence: "All elements must align with standards"
     documentationMandatory: "All modifications must be properly documented"
-    versionManagement: "Version increments required for significant changes in individual rule files"
+    versionManagement: "Version increments required for significant changes in
+      individual rule files"
     indexSynchronization: "Rule index must be kept synchronized without version information"
     scenarioIntegrity: "Scenarios must maintain clear purpose and non-redundant functionality"
-    versionExclusion: "CRITICAL: Rule index MUST NEVER contain version fields - versions managed only in individual rule files"
+    versionExclusion: "CRITICAL: Rule index MUST NEVER contain version fields -
+      versions managed only in individual rule files"
+
+```
